@@ -128,7 +128,7 @@ public class Usuario {
         return(affectedRows == 1);
     }
 
-    public Usuario getNuevoModulo()
+    public Usuario getNuevo()
     {
         Usuario Usuario = new Usuario();
         Usuario.idEmpleado = this.GetIdUnicoParaUsuario();

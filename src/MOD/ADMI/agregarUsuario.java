@@ -9,6 +9,7 @@ import API.ADMI.Usuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -327,6 +328,8 @@ public class agregarUsuario extends javax.swing.JFrame {
     void mostrarTabla(){
          String[] nombres = {"ID","Clave","Nombre","A. Paterno", "A. Materno","Dirección","Tipo Usuario"};  
         // se utiliza la funcion
+        ArrayList<Usuario> ListaDeUsuarios = new Usuario().GetAllUsuario();
+        //Parsear ListaDeUsuarios a Object[][]
         dat = us.getDatos();
                
         // se colocan los datos en la tabla
@@ -370,14 +373,26 @@ public class agregarUsuario extends javax.swing.JFrame {
         String tipo = txtTipo.getText();
         if (nombreEmpleado.isEmpty()|| aPaterno.isEmpty() || aMaterno.isEmpty() || direccion.isEmpty() ){
             JOptionPane.showMessageDialog(null, "No se han llenado todos los campos", "Llenar campos", JOptionPane.ERROR_MESSAGE); 
-        }else{ 
-           
-            int resultado = us.Agregar(idEmpleado, claveEmpleado, nombreEmpleado,aPaterno,aMaterno,direccion,tipo);
-            if(resultado>0){
+        }
+        else
+        { 
+            Usuario Usuario = new Usuario().getNuevo();
+            Usuario.setClaveEmpleado(claveEmpleado);
+            Usuario.setNombreEmpleado(nombreEmpleado);
+            Usuario.setNombreEmpleado(nombreEmpleado);
+            Usuario.setAPaterno(aPaterno);
+            Usuario.setAMaterno(aMaterno);
+            Usuario.setDireccion(direccion);
+            Usuario.setTipo(tipo);
+            //--
+            if(Usuario.InsertRegistro(Usuario))
+            {
                 JOptionPane.showMessageDialog(null, "Usuario agregado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 limpiar();
                 Deshabilitar();
-            }else{
+            }
+            else
+            {
                 JOptionPane.showMessageDialog(null, "Usuario no agregado", "Error al guardar", JOptionPane.ERROR_MESSAGE); 
             }
             mostrarTabla();
@@ -386,8 +401,7 @@ public class agregarUsuario extends javax.swing.JFrame {
 }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String id = String.valueOf(tableUsuario.getValueAt(fila, 0));   
-        int a = us.Eliminar(id);
-        if(a==0){
+        if(new Usuario().DeleteRegistro(id)){
             limpiar();
             mostrarTabla();
             Deshabilitar();
@@ -431,17 +445,34 @@ public class agregarUsuario extends javax.swing.JFrame {
         if (idEmpleado.isEmpty() || nombreEmpleado.isEmpty()|| claveEmpleado.isEmpty()||aPaterno.isEmpty()
             || aMaterno.isEmpty() || direccion.isEmpty()|| tipo.isEmpty() ){
             JOptionPane.showMessageDialog(null, "No se han llenado todos los campos", "Llenar campos", JOptionPane.ERROR_MESSAGE); 
-        }else{ 
-           
-            int resultado = us.Actualizar(idEmpleado, claveEmpleado, nombreEmpleado,aPaterno,aMaterno,direccion,tipo);
-            if(resultado>0){
-                JOptionPane.showMessageDialog(null, "Usuario modificado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                limpiar();
-                Deshabilitar();
-            }else{
-                JOptionPane.showMessageDialog(null, "Usuario no modificado", "Error al guardar", JOptionPane.ERROR_MESSAGE); 
+        }
+        else
+        { 
+            Usuario Usuario = new Usuario().GetRegistro(idEmpleado);
+            //--
+            if(Usuario != null)
+            {
+                Usuario.setClaveEmpleado(claveEmpleado);
+                Usuario.setNombreEmpleado(nombreEmpleado);
+                Usuario.setNombreEmpleado(nombreEmpleado);
+                Usuario.setAPaterno(aPaterno);
+                Usuario.setAMaterno(aMaterno);
+                Usuario.setDireccion(direccion);
+                Usuario.setTipo(tipo);
+                //--
+                if(Usuario.Update_Registro(Usuario.getIdEmpleado(), Usuario)){
+                    JOptionPane.showMessageDialog(null, "Usuario modificado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    limpiar();
+                    Deshabilitar();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Usuario no modificado", "Error al guardar", JOptionPane.ERROR_MESSAGE); 
+                }
+                mostrarTabla();
             }
-            mostrarTabla();      
+            else
+            {
+                JOptionPane.showMessageDialog(null, "No se ha podido encontrar ningún registro con el id ingresado.", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }      
     }//GEN-LAST:event_jButton2ActionPerformed
 }
     private void limitarLetras(java.awt.event.KeyEvent evt){
