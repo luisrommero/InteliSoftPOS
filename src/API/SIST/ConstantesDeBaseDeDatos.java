@@ -8,7 +8,7 @@ package API.SIST;
 public class ConstantesDeBaseDeDatos {
     
     private final String HOST_NAME = "127.0.0.1";
-    private final String DATABASE_NAME = "InteliSoftPOS_DB";
+    public final static String DATABASE_NAME = "InteliSoftPOS_DB";
     private final String PORT = "3306";
     private final String JDBC = "mysql";
     public final String USERNAME = "root";
