@@ -132,6 +132,11 @@ public class agregarUsuario extends javax.swing.JFrame {
         });
 
         btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -235,9 +240,9 @@ public class agregarUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(153, 153, 153))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -264,7 +269,7 @@ public class agregarUsuario extends javax.swing.JFrame {
                             .addComponent(txtDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGap(21, 21, 21)
                     .addComponent(jLabel8)
-                    .addContainerGap(371, Short.MAX_VALUE)))
+                    .addContainerGap(372, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -311,18 +316,24 @@ public class agregarUsuario extends javax.swing.JFrame {
             evt.consume(); 
         }
     }
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        mostrarTabla();
+        txtId.setVisible(true);
         
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+
         String claveEmpleado = txtClave.getText();
         String password = txtPassword.getText();
-        String nombreEmpleado = txtNombre.getText(); 
+        String nombreEmpleado = txtNombre.getText();
         String aPaterno = txtAp.getText();
         String aMaterno = txtAm.getText();
         String direccion = txtDir.getText();
         String tipo = (String) cmbTipoUsuario.getSelectedItem();
-        
+
         Usuario Usuario = new Usuario().getNuevo();
-        
+
         String idUsuario = Usuario.getIdUsuario();
         Usuario.setIdUsuario(idUsuario);
         Usuario.setClaveEmpleado(claveEmpleado);
@@ -337,22 +348,73 @@ public class agregarUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Usuario agregado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             mostrarTabla();
         }else{
-            JOptionPane.showMessageDialog(null, "Usuario no agregado", "Error al guardar", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(null, "Usuario no agregado", "Error al guardar", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        mostrarTabla();
-        txtId.setVisible(false);
-        
-    }//GEN-LAST:event_formWindowOpened
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int fila = 0;
+        String id = txtId.getText();
+        if(new Usuario().DeleteRegistro(id)){
+            mostrarTabla();
+        }
 
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        limitarALetras(evt);
-        if(txtNombre.getText().length()>=30){
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        String idUsuario =txtId.getText();
+        String claveEmpleado = txtClave.getText();
+        String password = txtPassword.getText();
+        String nombreEmpleado = txtNombre.getText();
+        String aPaterno = txtAp.getText();
+        String aMaterno = txtAm.getText();
+        String direccion = txtDir.getText();
+        String tipo = (String) cmbTipoUsuario.getSelectedItem();
+
+        Usuario Usuario = new Usuario().GetRegistro(idUsuario);
+        //--
+        if(Usuario != null)
+        {
+            Usuario.setClaveEmpleado(claveEmpleado);
+            Usuario.setPassword(password);
+            Usuario.setNombreEmpleado(nombreEmpleado);
+            Usuario.setAPaterno(aPaterno);
+            Usuario.setAMaterno(aMaterno);
+            Usuario.setDireccion(direccion);
+            Usuario.setTipoUsuario(tipo);
+
+            //--
+            if(Usuario.Update_Registro(Usuario.getIdUsuario(), Usuario)){
+                JOptionPane.showMessageDialog(null, "Usuario modificado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "Usuario no modificado", "Error al guardar", JOptionPane.ERROR_MESSAGE);
+            }
+            mostrarTabla();
+        }
+
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void tableUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuarioMouseClicked
+        int fila = 0;
+        fila = tableUsuario.rowAtPoint(evt.getPoint());
+        txtClave.setEditable(false);
+        if (fila >= 0 ){
+            txtId.setText(String.valueOf(tableUsuario.getValueAt(fila,0)));
+            txtClave.setText(String.valueOf(tableUsuario.getValueAt(fila, 1)));
+            txtPassword.setText(String.valueOf(tableUsuario.getValueAt(fila, 2)));
+            txtNombre.setText(String.valueOf(tableUsuario.getValueAt(fila, 3)));
+            txtAp.setText(String.valueOf(tableUsuario.getValueAt(fila, 4)));
+            txtAm.setText(String.valueOf(tableUsuario.getValueAt(fila, 5)));
+            txtDir.setText(String.valueOf(tableUsuario.getValueAt(fila, 6)));
+            cmbTipoUsuario.setSelectedItem(String.valueOf(tableUsuario.getValueAt(fila, 7)));
+        }
+    }//GEN-LAST:event_tableUsuarioMouseClicked
+
+    private void txtDirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDirKeyTyped
+        if(txtDir.getText().length()>=100){
             evt.consume();
         }
-    }//GEN-LAST:event_txtNombreKeyTyped
+    }//GEN-LAST:event_txtDirKeyTyped
 
     private void txtApKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApKeyTyped
         limitarALetras(evt);
@@ -368,66 +430,18 @@ public class agregarUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtAmKeyTyped
 
-    private void tableUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuarioMouseClicked
-        int fila = 0;
-        fila = tableUsuario.rowAtPoint(evt.getPoint());
-        txtClave.setEditable(false);
-        if (fila >= 0 ){  
-            txtId.setText(String.valueOf(tableUsuario.getValueAt(fila,0)));
-            txtClave.setText(String.valueOf(tableUsuario.getValueAt(fila, 1)));
-            txtPassword.setText(String.valueOf(tableUsuario.getValueAt(fila, 2)));
-            txtNombre.setText(String.valueOf(tableUsuario.getValueAt(fila, 3)));
-            txtAp.setText(String.valueOf(tableUsuario.getValueAt(fila, 4)));
-            txtAm.setText(String.valueOf(tableUsuario.getValueAt(fila, 5)));
-            txtDir.setText(String.valueOf(tableUsuario.getValueAt(fila, 6)));
-            cmbTipoUsuario.setSelectedItem(String.valueOf(tableUsuario.getValueAt(fila, 7)));
-         }
-    }//GEN-LAST:event_tableUsuarioMouseClicked
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        String idUsuario =txtId.getText();
-        String claveEmpleado = txtClave.getText();
-        String password = txtPassword.getText();
-        String nombreEmpleado = txtNombre.getText(); 
-        String aPaterno = txtAp.getText();
-        String aMaterno = txtAm.getText();
-        String direccion = txtDir.getText();
-        String tipo = (String) cmbTipoUsuario.getSelectedItem();
-        
-        Usuario Usuario = new Usuario().GetRegistro(idUsuario);
-            //--
-            if(Usuario != null)
-            {
-                Usuario.setClaveEmpleado(claveEmpleado);
-                Usuario.setPassword(password);
-                Usuario.setNombreEmpleado(nombreEmpleado);
-                Usuario.setAPaterno(aPaterno);
-                Usuario.setAMaterno(aMaterno);
-                Usuario.setDireccion(direccion);
-                Usuario.setTipoUsuario(tipo);
-
-                //--
-                if(Usuario.Update_Registro(Usuario.getIdUsuario(), Usuario)){
-                    JOptionPane.showMessageDialog(null, "Usuario modificado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                    JOptionPane.showMessageDialog(null, "Usuario no modificado", "Error al guardar", JOptionPane.ERROR_MESSAGE); 
-                }
-                mostrarTabla();
-            }
-            
-    }//GEN-LAST:event_btnModificarActionPerformed
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        limitarALetras(evt);
+        if(txtNombre.getText().length()>=30){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyTyped
         if(txtClave.getText().length()>=10){
             evt.consume();
         }
     }//GEN-LAST:event_txtClaveKeyTyped
-
-    private void txtDirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDirKeyTyped
-        if(txtDir.getText().length()>=100){
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtDirKeyTyped
 
   
     public static void main(String args[]) {
