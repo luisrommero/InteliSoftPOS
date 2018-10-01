@@ -227,11 +227,12 @@ public class agregarUsuario extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                 .addComponent(cmbTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -289,6 +290,12 @@ public class agregarUsuario extends javax.swing.JFrame {
      void mostrarTabla(){
         String[] nombres = {"ID","Clave","Password","Nombre","A. Paterno", "A. Materno","Dirección","Tipo Usuario"};  
         ArrayList<Usuario> ListaDeUsuarios = new Usuario().GetAllUsuario();
+        System.out.println(ListaDeUsuarios);
+        if (ListaDeUsuarios==null){
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.setColumnIdentifiers(nombres);
+            tableUsuario.setModel(modelo);
+        }else{
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.setColumnIdentifiers(nombres);
    
@@ -307,6 +314,7 @@ public class agregarUsuario extends javax.swing.JFrame {
             modelo.addRow(fila);
         }
         tableUsuario.setModel(modelo);
+        }
      }
     private void limitarALetras(java.awt.event.KeyEvent evt){
         char c = evt.getKeyChar();
@@ -316,49 +324,68 @@ public class agregarUsuario extends javax.swing.JFrame {
             evt.consume(); 
         }
     }
+    public void limpiar(){
+        txtId.setText("");
+        txtClave.setText("");
+        txtNombre.setText("");
+        txtAp.setText("");
+        txtAm.setText("");
+        txtDir.setText("");
+        txtPassword.setText("");
+    }
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         mostrarTabla();
-        txtId.setVisible(true);
+        txtId.setVisible(false);
         
     }//GEN-LAST:event_formWindowOpened
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        
+            String claveEmpleado = txtClave.getText();
+            String password = txtPassword.getText();
+            String nombreEmpleado = txtNombre.getText();
+            String aPaterno = txtAp.getText();
+            String aMaterno = txtAm.getText();
+            String direccion = txtDir.getText();
+            String tipo = (String) cmbTipoUsuario.getSelectedItem();
+            if (claveEmpleado.isEmpty() || nombreEmpleado.isEmpty()|| aPaterno.isEmpty() || aMaterno.isEmpty() || direccion.isEmpty() || password.isEmpty() ){
+                JOptionPane.showMessageDialog(null, "No se han llenado todos los campos", "Llenar campos", JOptionPane.ERROR_MESSAGE); 
+            }else{
 
-        String claveEmpleado = txtClave.getText();
-        String password = txtPassword.getText();
-        String nombreEmpleado = txtNombre.getText();
-        String aPaterno = txtAp.getText();
-        String aMaterno = txtAm.getText();
-        String direccion = txtDir.getText();
-        String tipo = (String) cmbTipoUsuario.getSelectedItem();
+                Usuario Usuario = new Usuario().getNuevo();
 
-        Usuario Usuario = new Usuario().getNuevo();
-
-        String idUsuario = Usuario.getIdUsuario();
-        Usuario.setIdUsuario(idUsuario);
-        Usuario.setClaveEmpleado(claveEmpleado);
-        Usuario.setPassword(password);
-        Usuario.setNombreEmpleado(nombreEmpleado);
-        Usuario.setAPaterno(aPaterno);
-        Usuario.setAMaterno(aMaterno);
-        Usuario.setDireccion(direccion);
-        Usuario.setTipoUsuario(tipo);
-        //--
-        if(Usuario.InsertRegistro(Usuario)){
-            JOptionPane.showMessageDialog(null, "Usuario agregado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            mostrarTabla();
-        }else{
-            JOptionPane.showMessageDialog(null, "Usuario no agregado", "Error al guardar", JOptionPane.ERROR_MESSAGE);
-        }
+                String idUsuario = Usuario.getIdUsuario();
+                Usuario.setIdUsuario(idUsuario);
+                Usuario.setClaveEmpleado(claveEmpleado);
+                Usuario.setPassword(password);
+                Usuario.setNombreEmpleado(nombreEmpleado);
+                Usuario.setAPaterno(aPaterno);
+                Usuario.setAMaterno(aMaterno);
+                Usuario.setDireccion(direccion);
+                Usuario.setTipoUsuario(tipo);
+        
+                if(Usuario.InsertRegistro(Usuario)){
+                    JOptionPane.showMessageDialog(null, "Usuario agregado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    mostrarTabla();
+                    limpiar();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Usuario no agregado", "Error al guardar", JOptionPane.ERROR_MESSAGE);
+                }
+            }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int fila = 0;
         String id = txtId.getText();
-        if(new Usuario().DeleteRegistro(id)){
-            mostrarTabla();
+        int aceptar = JOptionPane.showConfirmDialog(null, "¿Seguro de eliminar usuario?");
+        if(aceptar==JOptionPane.OK_OPTION){
+            if(new Usuario().DeleteRegistro(id)){
+                mostrarTabla();
+                limpiar();
+            }
+        }else{
+                JOptionPane.showMessageDialog(null, "Usuario no eliminado", "Cancelado",JOptionPane.INFORMATION_MESSAGE);
         }
-
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -370,34 +397,35 @@ public class agregarUsuario extends javax.swing.JFrame {
         String aMaterno = txtAm.getText();
         String direccion = txtDir.getText();
         String tipo = (String) cmbTipoUsuario.getSelectedItem();
+        if (claveEmpleado.isEmpty() || nombreEmpleado.isEmpty()|| aPaterno.isEmpty() || aMaterno.isEmpty() || direccion.isEmpty() || password.isEmpty() ){
+                JOptionPane.showMessageDialog(null, "No se han llenado todos los campos", "Llenar campos", JOptionPane.ERROR_MESSAGE); 
+        }else{
+            Usuario Usuario = new Usuario().GetRegistro(idUsuario);
+        
+            if(Usuario != null)
+            {
+                Usuario.setClaveEmpleado(claveEmpleado);
+                Usuario.setPassword(password);
+                Usuario.setNombreEmpleado(nombreEmpleado);
+                Usuario.setAPaterno(aPaterno);
+                Usuario.setAMaterno(aMaterno);
+                Usuario.setDireccion(direccion);
+                Usuario.setTipoUsuario(tipo);
 
-        Usuario Usuario = new Usuario().GetRegistro(idUsuario);
-        //--
-        if(Usuario != null)
-        {
-            Usuario.setClaveEmpleado(claveEmpleado);
-            Usuario.setPassword(password);
-            Usuario.setNombreEmpleado(nombreEmpleado);
-            Usuario.setAPaterno(aPaterno);
-            Usuario.setAMaterno(aMaterno);
-            Usuario.setDireccion(direccion);
-            Usuario.setTipoUsuario(tipo);
-
-            //--
-            if(Usuario.Update_Registro(Usuario.getIdUsuario(), Usuario)){
-                JOptionPane.showMessageDialog(null, "Usuario modificado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(null, "Usuario no modificado", "Error al guardar", JOptionPane.ERROR_MESSAGE);
+                if(Usuario.Update_Registro(Usuario.getIdUsuario(), Usuario)){
+                    JOptionPane.showMessageDialog(null, "Usuario modificado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    limpiar();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Usuario no modificado", "Error al guardar", JOptionPane.ERROR_MESSAGE);
+                }
             }
             mostrarTabla();
         }
-
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void tableUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuarioMouseClicked
         int fila = 0;
         fila = tableUsuario.rowAtPoint(evt.getPoint());
-        txtClave.setEditable(false);
         if (fila >= 0 ){
             txtId.setText(String.valueOf(tableUsuario.getValueAt(fila,0)));
             txtClave.setText(String.valueOf(tableUsuario.getValueAt(fila, 1)));
