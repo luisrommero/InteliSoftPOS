@@ -13,15 +13,16 @@ import API.SIST.*;
  * @author luisromero
  */
 public class Usuario {
-    private String idEmpleado;
+    private String idUsuario;
     private String claveEmpleado;
     private String nombreEmpleado;
     private String aPaterno;
     private String aMaterno;
     private String direccion;
-    private String tipo;
+    private String tipoUsuario;
+    private String password;
     //--
-    private final static String TABLE_NAME = "admi_usuario";
+    private final static String TABLE_NAME = "usuario";
     
     public Usuario()
     {
@@ -31,13 +32,14 @@ public class Usuario {
     public Boolean InsertRegistro(Usuario U)
     {
         String Query = "INSERT INTO `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Usuario.TABLE_NAME +"` VALUES("
-        + "'" + U.idEmpleado + "',"
+        + "'" + U.idUsuario + "',"
         + "'" + U.claveEmpleado + "',"
         + "'" + U.nombreEmpleado + "',"
         + "'" + U.aPaterno + "',"
         + "'" + U.aMaterno + "',"
         + "'" + U.direccion + "',"
-        + "'" + U.tipo + "')";
+        + "'" + U.password + "',"        
+        + "'" + U.tipoUsuario + "')";
         //--
         int AffectedRows = new BaseDeDatos().EjecutarSentenciaINSERT(Query);
         if(AffectedRows == 1) return(true);
@@ -46,19 +48,20 @@ public class Usuario {
 
     public Usuario GetRegistro(String Id)
     {
-        String Query = "SELECT * FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Usuario.TABLE_NAME +"` WHERE `idEmpleado` = '" + Id + "';";
+        String Query = "SELECT * FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Usuario.TABLE_NAME +"` WHERE `idusuario` = '" + Id + "';";
         ArrayList<ArrayList<String>> ListaDeFilas = new BaseDeDatos().EjecutarSentenciaSELECT(Query);
         try
         {
             Usuario Usuario = new Usuario();
             //--
-            Usuario.idEmpleado = ListaDeFilas.get(0).get(0);
+            Usuario.idUsuario = ListaDeFilas.get(0).get(0);
             Usuario.claveEmpleado = ListaDeFilas.get(0).get(1);
             Usuario.nombreEmpleado = ListaDeFilas.get(0).get(2);
             Usuario.aPaterno = ListaDeFilas.get(0).get(3);
             Usuario.aMaterno = ListaDeFilas.get(0).get(4);
             Usuario.direccion = ListaDeFilas.get(0).get(5);
-            Usuario.tipo = ListaDeFilas.get(0).get(6);
+            Usuario.password = ListaDeFilas.get(0).get(6);
+            Usuario.tipoUsuario= ListaDeFilas.get(0).get(7);
             //--
             return (Usuario);
         }
@@ -72,7 +75,7 @@ public class Usuario {
     public ArrayList<Usuario> GetAllUsuario()
     {
         ArrayList<Usuario> Lista = new ArrayList<Usuario>();
-        String Query = "SELECT `idEmpleado` FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Usuario.TABLE_NAME +"` ";
+        String Query = "SELECT `idUsuario` FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Usuario.TABLE_NAME +"` ";
         ArrayList<ArrayList<String>> ListaDeFilas = new BaseDeDatos().EjecutarSentenciaSELECT(Query);
         //--
         if (!ListaDeFilas.isEmpty()) {
@@ -96,14 +99,15 @@ public class Usuario {
     public boolean Update_Registro(String Id, Usuario U)
     {
         String Query = "UPDATE `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Usuario.TABLE_NAME +"` SET"
-        + "`idEmpleado` = '" + U.idEmpleado + "', "
-        + "`claveEmpleado` = '" + U.claveEmpleado + "', "
-        + "`nombreEmpleado` = '" + U.nombreEmpleado + "', "
-        + "`aPaterno` = '" + U.aPaterno + "', "
-        + "`aMaterno` = '" + U.aMaterno + "', "
+        + "`idusuario` = '" + U.idUsuario + "', "
+        + "`claveempleado` = '" + U.claveEmpleado + "', "
+        + "`nombreempleado` = '" + U.nombreEmpleado + "', "
+        + "`apaterno` = '" + U.aPaterno + "', "
+        + "`amaterno` = '" + U.aMaterno + "', "
         + "`direccion` = '" + U.direccion + "', "
-        + "`tipo` = '" + U.tipo + "' "
-        + "WHERE `idEmpleado` = '" + Id + "';";
+        + "`password` = '" + U.password + "', "         
+        + "`tipousuario` = '" + U.tipoUsuario + "' "
+        + "WHERE `idusuario` = '" + Id + "';";
         //--
         int AffectedRows = new BaseDeDatos().EjecutarSentenciaUPDATE(Query);
         if(AffectedRows == 1) return(true);
@@ -114,7 +118,7 @@ public class Usuario {
     {
         String Query = "UPDATE  `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Usuario.TABLE_NAME +"` SET"
         + "`" + Campo + "` = '" + Valor + "' "
-        + "WHERE `idEmpleado` = '" + idEmpleado + "';";
+        + "WHERE `idUsuario` = '" + idUsuario + "';";
         //--
         int AffectedRows = new BaseDeDatos().EjecutarSentenciaUPDATE(Query);
         //--
@@ -123,7 +127,7 @@ public class Usuario {
 
     public boolean DeleteRegistro(String id)
     {
-        String Query = "DELETE FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Usuario.TABLE_NAME +"` WHERE `idEmpleado` = '" + id + "';";
+        String Query = "DELETE FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Usuario.TABLE_NAME +"` WHERE `idUsuario` = '" + id + "';";
         int affectedRows = new BaseDeDatos().EjecutarSentenciaDELETE(Query);
         return(affectedRows == 1);
     }
@@ -131,7 +135,7 @@ public class Usuario {
     public Usuario getNuevo()
     {
         Usuario Usuario = new Usuario();
-        Usuario.idEmpleado = this.GetIdUnicoParaUsuario();
+        Usuario.idUsuario = this.GetIdUnicoParaUsuario();
         return (Usuario);
     }
 
@@ -139,7 +143,7 @@ public class Usuario {
         Utilities utilities = new Utilities();
         while (true) {
             String UUID = utilities.GetRandomUUID();
-            String IdModulo = UUID.substring(24, UUID.length());
+            String IdModulo = UUID.substring(0,10);
             if (this.IsIdUnique(IdModulo)) {
                 return (IdModulo);
             }
@@ -148,7 +152,7 @@ public class Usuario {
 
     private boolean IsIdUnique(String Id)
     {
-        String Query = "SELECT `idEmpleado` FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Usuario.TABLE_NAME +"` WHERE `IdModulo` = '" + Id + "';";
+        String Query = "SELECT `idUsuario` FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Usuario.TABLE_NAME +"` WHERE `idUsuario` = '" + Id + "';";
         ArrayList<ArrayList<String>> ListaDeFilas = new BaseDeDatos().EjecutarSentenciaSELECT(Query);
         //--
         try {
@@ -163,9 +167,9 @@ public class Usuario {
         }
     }
     
-    public String getIdEmpleado()
+    public String getIdUsuario()
     {
-        return(this.idEmpleado);
+        return(this.idUsuario);
     }
     
     public String getClaveEmpleado()
@@ -192,15 +196,19 @@ public class Usuario {
     {
         return(this.direccion);
     }
-    
-    public String getTipo()
+    public String getPassword()
     {
-        return(this.tipo);
+        return(this.password);
     }
     
-    public void setIdEmpleado(String IdEmpleado)
+    public String getTipoUsuario()
     {
-        this.idEmpleado = IdEmpleado;
+        return(this.tipoUsuario);
+    }
+    
+    public void setIdUsuario(String IdUsuario)
+    {
+        this.idUsuario = IdUsuario;
     }
     
     public void setClaveEmpleado(String ClaveEmpleado)
@@ -227,21 +235,26 @@ public class Usuario {
     {
         this.direccion = Direccion;
     }
-    
-    public void setTipo(String Tipo)
+    public void setPassword(String Password)
     {
-        this.tipo = Tipo;
+        this.password = Password;
+    }    
+    
+    public void setTipoUsuario(String Tipo)
+    {
+        this.tipoUsuario = Tipo;
     }
     
     public void ResetAttributes()
     {
-        this.idEmpleado = "";
+        this.idUsuario = "";
         this.claveEmpleado = "";
         this.nombreEmpleado = "";
         this.aPaterno = "";
         this.aMaterno = "";
         this.direccion = "";
-        this.tipo = "";
+        this.password = "";
+        this.tipoUsuario = "";
     }
     
 }
