@@ -37,7 +37,6 @@ public class agregarUsuario extends javax.swing.JFrame {
         txtAm = new javax.swing.JTextField();
         txtAp = new javax.swing.JTextField();
         txtDir = new javax.swing.JTextField();
-        txtTipo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableUsuario = new javax.swing.JTable();
         btnModificar = new javax.swing.JButton();
@@ -47,6 +46,8 @@ public class agregarUsuario extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
+        cmbTipoUsuario = new javax.swing.JComboBox<>();
+        txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -78,6 +79,12 @@ public class agregarUsuario extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel8.setText("Tipo de usuario");
 
+        txtClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtClaveKeyTyped(evt);
+            }
+        });
+
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
@@ -96,6 +103,12 @@ public class agregarUsuario extends javax.swing.JFrame {
             }
         });
 
+        txtDir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDirKeyTyped(evt);
+            }
+        });
+
         tableUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -104,9 +117,19 @@ public class agregarUsuario extends javax.swing.JFrame {
 
             }
         ));
+        tableUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableUsuarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableUsuario);
 
         btnModificar.setBackground(new java.awt.Color(255, 255, 255));
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -123,6 +146,9 @@ public class agregarUsuario extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel9.setText("Password:");
+
+        cmbTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "EMPLEADO" }));
+        cmbTipoUsuario.setToolTipText("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,9 +177,18 @@ public class agregarUsuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 269, Short.MAX_VALUE)))
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 262, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(cmbTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -166,14 +201,8 @@ public class agregarUsuario extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel7)
                                 .addComponent(jLabel8))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtDir, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(35, 35, 35)
-                                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDir, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4)
@@ -190,14 +219,17 @@ public class agregarUsuario extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                .addGap(57, 57, 57)
+                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                .addComponent(cmbTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -231,9 +263,7 @@ public class agregarUsuario extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGap(21, 21, 21)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8)
                     .addContainerGap(371, Short.MAX_VALUE)))
         );
 
@@ -289,7 +319,7 @@ public class agregarUsuario extends javax.swing.JFrame {
         String aPaterno = txtAp.getText();
         String aMaterno = txtAm.getText();
         String direccion = txtDir.getText();
-        String tipo = txtTipo.getText();
+        String tipo = (String) cmbTipoUsuario.getSelectedItem();
         
         Usuario Usuario = new Usuario().getNuevo();
         
@@ -313,6 +343,8 @@ public class agregarUsuario extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         mostrarTabla();
+        txtId.setVisible(false);
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
@@ -335,6 +367,67 @@ public class agregarUsuario extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtAmKeyTyped
+
+    private void tableUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuarioMouseClicked
+        int fila = 0;
+        fila = tableUsuario.rowAtPoint(evt.getPoint());
+        txtClave.setEditable(false);
+        if (fila >= 0 ){  
+            txtId.setText(String.valueOf(tableUsuario.getValueAt(fila,0)));
+            txtClave.setText(String.valueOf(tableUsuario.getValueAt(fila, 1)));
+            txtPassword.setText(String.valueOf(tableUsuario.getValueAt(fila, 2)));
+            txtNombre.setText(String.valueOf(tableUsuario.getValueAt(fila, 3)));
+            txtAp.setText(String.valueOf(tableUsuario.getValueAt(fila, 4)));
+            txtAm.setText(String.valueOf(tableUsuario.getValueAt(fila, 5)));
+            txtDir.setText(String.valueOf(tableUsuario.getValueAt(fila, 6)));
+            cmbTipoUsuario.setSelectedItem(String.valueOf(tableUsuario.getValueAt(fila, 7)));
+         }
+    }//GEN-LAST:event_tableUsuarioMouseClicked
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        String idUsuario =txtId.getText();
+        String claveEmpleado = txtClave.getText();
+        String password = txtPassword.getText();
+        String nombreEmpleado = txtNombre.getText(); 
+        String aPaterno = txtAp.getText();
+        String aMaterno = txtAm.getText();
+        String direccion = txtDir.getText();
+        String tipo = (String) cmbTipoUsuario.getSelectedItem();
+        
+        Usuario Usuario = new Usuario().GetRegistro(idUsuario);
+            //--
+            if(Usuario != null)
+            {
+                Usuario.setClaveEmpleado(claveEmpleado);
+                Usuario.setPassword(password);
+                Usuario.setNombreEmpleado(nombreEmpleado);
+                Usuario.setAPaterno(aPaterno);
+                Usuario.setAMaterno(aMaterno);
+                Usuario.setDireccion(direccion);
+                Usuario.setTipoUsuario(tipo);
+
+                //--
+                if(Usuario.Update_Registro(Usuario.getIdUsuario(), Usuario)){
+                    JOptionPane.showMessageDialog(null, "Usuario modificado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Usuario no modificado", "Error al guardar", JOptionPane.ERROR_MESSAGE); 
+                }
+                mostrarTabla();
+            }
+            
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void txtClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyTyped
+        if(txtClave.getText().length()>=10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtClaveKeyTyped
+
+    private void txtDirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDirKeyTyped
+        if(txtDir.getText().length()>=100){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDirKeyTyped
 
   
     public static void main(String args[]) {
@@ -374,6 +467,7 @@ public class agregarUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JComboBox<String> cmbTipoUsuario;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
@@ -391,8 +485,8 @@ public class agregarUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField txtAp;
     private javax.swing.JTextField txtClave;
     private javax.swing.JTextField txtDir;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 }
