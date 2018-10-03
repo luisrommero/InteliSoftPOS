@@ -89,10 +89,24 @@
                   <Component id="labelTitulo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
+<<<<<<< HEAD
                       <Component id="labelBienvenidoadministrador" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtBienvenidoadministrador" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+=======
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jButton1" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="jButton2" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="jButton3" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="jBventa" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+>>>>>>> e347d4493a68543d34a0b375f9c24b6185aa4e5b
                   </Group>
                   <EmptySpace pref="48" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">

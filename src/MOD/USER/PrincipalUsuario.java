@@ -27,98 +27,103 @@ public class PrincipalUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        panelPrincipalUsuario = new javax.swing.JPanel();
+        labelMenuPrincipal = new javax.swing.JLabel();
+        labelBienvenidoUsuario = new javax.swing.JLabel();
+        labelFecha = new javax.swing.JLabel();
+        txtBienvenidoUsuario = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
+        botonProductos = new javax.swing.JButton();
+        botonTicket = new javax.swing.JButton();
+        botonVenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(155, 155, 255));
+        panelPrincipalUsuario.setBackground(new java.awt.Color(155, 155, 255));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("MENÚ PRINCIPAL");
+        labelMenuPrincipal.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        labelMenuPrincipal.setText("MENÚ PRINCIPAL");
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel2.setText("BIENVENIDO USUARIO:");
+        labelBienvenidoUsuario.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        labelBienvenidoUsuario.setText("BIENVENIDO USUARIO:");
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel3.setText("FECHA:");
+        labelFecha.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        labelFecha.setText("FECHA:");
 
-        jButton1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/PRODUCTOS.png"))); // NOI18N
-        jButton1.setText("PRODUCTOS");
+        txtBienvenidoUsuario.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
-        jButton2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/TICKET.png"))); // NOI18N
-        jButton2.setText("TICKET");
+        txtFecha.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
-        jButton3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/VENTA.png"))); // NOI18N
-        jButton3.setText("VENTA");
+        botonProductos.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        botonProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/PRODUCTOS.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(252, 252, 252)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(63, 63, 63)
-                                .addComponent(jButton2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        botonTicket.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        botonTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/TICKET.png"))); // NOI18N
+
+        botonVenta.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        botonVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/VENTA.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelPrincipalUsuarioLayout = new javax.swing.GroupLayout(panelPrincipalUsuario);
+        panelPrincipalUsuario.setLayout(panelPrincipalUsuarioLayout);
+        panelPrincipalUsuarioLayout.setHorizontalGroup(
+            panelPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrincipalUsuarioLayout.createSequentialGroup()
+                .addGroup(panelPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(panelPrincipalUsuarioLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(labelBienvenidoUsuario)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtBienvenidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(67, 67, 67)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton3))))
+                        .addComponent(labelFecha)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPrincipalUsuarioLayout.createSequentialGroup()
+                        .addGroup(panelPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelPrincipalUsuarioLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(labelMenuPrincipal))
+                            .addGroup(panelPrincipalUsuarioLayout.createSequentialGroup()
+                                .addGap(93, 93, 93)
+                                .addComponent(botonProductos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonTicket)))
+                        .addGap(119, 119, 119)
+                        .addComponent(botonVenta)))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(133, Short.MAX_VALUE))
+        panelPrincipalUsuarioLayout.setVerticalGroup(
+            panelPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalUsuarioLayout.createSequentialGroup()
+                .addGroup(panelPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelPrincipalUsuarioLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonProductos))
+                    .addGroup(panelPrincipalUsuarioLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(labelMenuPrincipal)
+                        .addGap(18, 18, 18)
+                        .addGroup(panelPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelBienvenidoUsuario)
+                            .addComponent(labelFecha)
+                            .addComponent(txtBienvenidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addGroup(panelPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botonTicket)
+                            .addComponent(botonVenta))))
+                .addGap(57, 57, 57))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipalUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipalUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -160,14 +165,14 @@ public class PrincipalUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton botonProductos;
+    private javax.swing.JButton botonTicket;
+    private javax.swing.JButton botonVenta;
+    private javax.swing.JLabel labelBienvenidoUsuario;
+    private javax.swing.JLabel labelFecha;
+    private javax.swing.JLabel labelMenuPrincipal;
+    private javax.swing.JPanel panelPrincipalUsuario;
+    private javax.swing.JTextField txtBienvenidoUsuario;
+    private javax.swing.JTextField txtFecha;
     // End of variables declaration//GEN-END:variables
 }
