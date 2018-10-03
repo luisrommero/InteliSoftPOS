@@ -27,12 +27,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -62,18 +62,18 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="btnUsuarios" min="-2" pref="80" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                                  <Component id="jButton2" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="btnProductos" min="-2" pref="80" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jButton3" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="btnTickets" min="-2" pref="80" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextField2" min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="txtFecha" min="-2" pref="124" max="-2" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jBventa" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="btnVenta" min="-2" pref="80" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -83,7 +83,7 @@
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -97,16 +97,16 @@
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton1" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                      <Component id="jButton3" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                      <Component id="jBventa" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="btnUsuarios" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="btnProductos" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="btnTickets" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="btnVenta" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                  <EmptySpace pref="82" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -138,30 +138,30 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField1">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="txtFecha">
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnUsuarios">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/MOD/ICONO/USUARIOS.png&quot;))" type="code"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnProductos">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/MOD/ICONO/PRODUCTO.png&quot;))" type="code"/>
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/MOD/ICONO/PRODUCTOS.png&quot;))" type="code"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="btnTickets">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/MOD/ICONO/TICKET.png&quot;))" type="code"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jBventa">
+        <Component class="javax.swing.JButton" name="btnVenta">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/MOD/ICONO/VENTA.png&quot;))" type="code"/>
