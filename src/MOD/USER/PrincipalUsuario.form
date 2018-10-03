@@ -150,8 +150,13 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="1"/>
             </Property>
+<<<<<<< HEAD
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/MOD/ICONO/PRODUCTOS.png"/>
+=======
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/MOD/ICONO/PRODUCTOS.png&quot;))" type="code"/>
+>>>>>>> 2dfbce1daa9b8729ea1b3ebdd5377a11aa4062d9
             </Property>
           </Properties>
         </Component>
@@ -160,8 +165,13 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="1"/>
             </Property>
+<<<<<<< HEAD
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/MOD/ICONO/TICKET.png"/>
+=======
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/MOD/ICONO/TICKET.png&quot;))" type="code"/>
+>>>>>>> 2dfbce1daa9b8729ea1b3ebdd5377a11aa4062d9
             </Property>
           </Properties>
         </Component>
@@ -170,8 +180,13 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="1"/>
             </Property>
+<<<<<<< HEAD
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/MOD/ICONO/VENTA.png"/>
+=======
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/MOD/ICONO/VENTA.png&quot;))" type="code"/>
+>>>>>>> 2dfbce1daa9b8729ea1b3ebdd5377a11aa4062d9
             </Property>
           </Properties>
         </Component>

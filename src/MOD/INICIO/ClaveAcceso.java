@@ -54,7 +54,7 @@ public class ClaveAcceso extends javax.swing.JFrame {
 
         botonAceptar.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         botonAceptar.setForeground(new java.awt.Color(0, 153, 51));
-        botonAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/ACEPTAR.png"))); // NOI18N
+        botonAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/ACEPTAR.png")));
         botonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAceptarActionPerformed(evt);
