@@ -62,7 +62,6 @@ public class ClaveAcceso extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 153, 51));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/ACEPTAR.png")));
 
         jButton2.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         jButton2.setForeground(new java.awt.Color(153, 0, 0));
