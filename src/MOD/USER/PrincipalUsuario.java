@@ -39,7 +39,6 @@ public class PrincipalUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-<<<<<<< HEAD
         panelPrincipalUsuario.setBackground(new java.awt.Color(155, 155, 255));
 
         labelMenuPrincipal.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -75,7 +74,6 @@ public class PrincipalUsuario extends javax.swing.JFrame {
                         .addComponent(labelBienvenidoUsuario)
                         .addGap(18, 18, 18)
                         .addComponent(txtBienvenidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-=======
         jPanel1.setBackground(new java.awt.Color(155, 155, 255));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -119,7 +117,6 @@ public class PrincipalUsuario extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
->>>>>>> 2dfbce1daa9b8729ea1b3ebdd5377a11aa4062d9
                         .addGap(67, 67, 67)
                         .addComponent(labelFecha)
                         .addGap(18, 18, 18)
