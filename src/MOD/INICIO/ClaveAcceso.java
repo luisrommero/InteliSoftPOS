@@ -48,8 +48,6 @@ public class ClaveAcceso extends javax.swing.JFrame {
         passContraseña.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         passContraseña.setToolTipText("");
 
-<<<<<<< HEAD
-=======
         botonAceptar.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         botonAceptar.setForeground(new java.awt.Color(0, 153, 51));
         botonAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/ACEPTAR.png"))); // NOI18N
@@ -67,7 +65,6 @@ public class ClaveAcceso extends javax.swing.JFrame {
         botonSalir.setForeground(new java.awt.Color(0, 102, 102));
         botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/SALIR.png"))); // NOI18N
 
->>>>>>> b63e878aeb92eae2e5cf3ebb58d82dbc317046e8
         javax.swing.GroupLayout panelClaveAccesoLayout = new javax.swing.GroupLayout(panelClaveAcceso);
         panelClaveAcceso.setLayout(panelClaveAccesoLayout);
         panelClaveAccesoLayout.setHorizontalGroup(
