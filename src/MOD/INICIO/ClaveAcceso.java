@@ -1,6 +1,5 @@
 package MOD.INICIO;
 
-import javax.swing.ImageIcon;
 
 public class ClaveAcceso extends javax.swing.JFrame {
 
@@ -19,11 +18,15 @@ public class ClaveAcceso extends javax.swing.JFrame {
         labelLogotipo = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         passContraseña = new javax.swing.JPasswordField();
+        botonAceptar = new javax.swing.JButton();
+        botonAyuda = new javax.swing.JButton();
+        botonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ACCESO AL SISTEMA");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/intelisoft.png")).getImage());
         setLocation(new java.awt.Point(350, 250));
+        setMaximumSize(new java.awt.Dimension(461, 183));
         setResizable(false);
 
         panelClaveAcceso.setBackground(new java.awt.Color(153, 153, 255));
@@ -51,11 +54,6 @@ public class ClaveAcceso extends javax.swing.JFrame {
         botonAceptar.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         botonAceptar.setForeground(new java.awt.Color(0, 153, 51));
         botonAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/ACEPTAR.png"))); // NOI18N
-        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAceptarActionPerformed(evt);
-            }
-        });
 
         botonAyuda.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         botonAyuda.setForeground(new java.awt.Color(153, 0, 0));
@@ -71,16 +69,23 @@ public class ClaveAcceso extends javax.swing.JFrame {
             panelClaveAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelClaveAccesoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelClaveAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClaveAccesoLayout.createSequentialGroup()
-                        .addComponent(labelUsuario)
-                        .addGap(36, 36, 36)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClaveAccesoLayout.createSequentialGroup()
-                        .addComponent(labelContraseña)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(passContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(panelClaveAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelClaveAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClaveAccesoLayout.createSequentialGroup()
+                            .addComponent(labelUsuario)
+                            .addGap(36, 36, 36)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClaveAccesoLayout.createSequentialGroup()
+                            .addComponent(labelContraseña)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(passContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelClaveAccesoLayout.createSequentialGroup()
+                        .addComponent(botonAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(panelClaveAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClaveAccesoLayout.createSequentialGroup()
                         .addComponent(labelTitulo)
@@ -102,11 +107,16 @@ public class ClaveAcceso extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addGroup(panelClaveAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelContraseña)
-                            .addComponent(passContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(passContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelClaveAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelClaveAccesoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(labelLogotipo)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -140,12 +150,6 @@ public class ClaveAcceso extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ClaveAcceso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ClaveAcceso().setVisible(true);
@@ -154,6 +158,9 @@ public class ClaveAcceso extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAceptar;
+    private javax.swing.JButton botonAyuda;
+    private javax.swing.JButton botonSalir;
     private javax.swing.JLabel labelContraseña;
     private javax.swing.JLabel labelLogotipo;
     private javax.swing.JLabel labelTitulo;
