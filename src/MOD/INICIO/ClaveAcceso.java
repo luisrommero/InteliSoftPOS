@@ -54,14 +54,22 @@ public class ClaveAcceso extends javax.swing.JFrame {
         botonAceptar.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         botonAceptar.setForeground(new java.awt.Color(0, 153, 51));
         botonAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/ACEPTAR.png"))); // NOI18N
+        botonAceptar.setToolTipText("Ingresar al Sistema");
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarActionPerformed(evt);
+            }
+        });
 
         botonAyuda.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         botonAyuda.setForeground(new java.awt.Color(153, 0, 0));
         botonAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/AYUDA.png"))); // NOI18N
+        botonAyuda.setToolTipText("Ayuda");
 
         botonSalir.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         botonSalir.setForeground(new java.awt.Color(0, 102, 102));
         botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/SALIR.png"))); // NOI18N
+        botonSalir.setToolTipText("Salir");
 
         javax.swing.GroupLayout panelClaveAccesoLayout = new javax.swing.GroupLayout(panelClaveAcceso);
         panelClaveAcceso.setLayout(panelClaveAccesoLayout);
@@ -92,7 +100,7 @@ public class ClaveAcceso extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClaveAccesoLayout.createSequentialGroup()
                         .addComponent(labelLogotipo)
-                        .addGap(65, 65, 65))))
+                        .addGap(61, 61, 61))))
         );
         panelClaveAccesoLayout.setVerticalGroup(
             panelClaveAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,9 +110,9 @@ public class ClaveAcceso extends javax.swing.JFrame {
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelUsuario)
                     .addComponent(labelTitulo))
+                .addGap(29, 29, 29)
                 .addGroup(panelClaveAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelClaveAccesoLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
                         .addGroup(panelClaveAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelContraseña)
                             .addComponent(passContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -113,9 +121,7 @@ public class ClaveAcceso extends javax.swing.JFrame {
                             .addComponent(botonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botonAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelClaveAccesoLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(labelLogotipo)))
+                    .addComponent(labelLogotipo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -132,6 +138,10 @@ public class ClaveAcceso extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+        //Login al sistema.
+    }//GEN-LAST:event_botonAceptarActionPerformed
 
     public static void main(String args[]) {
         try {

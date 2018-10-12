@@ -364,7 +364,7 @@ public class producto_administrador extends javax.swing.JFrame {
             }else{
 
                 Producto Producto = new Producto().getNuevo();
-                String idProducto = Producto.getIdProducto();
+                //String idProducto = Producto.getIdProducto();
                 Producto.setUpc(upc);
                 Producto.setNombreProducto(nombreProd);
                 Producto.setDescripcion(descripcion);

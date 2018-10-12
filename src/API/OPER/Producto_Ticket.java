@@ -9,6 +9,6 @@ package API.OPER;
  *
  * @author luisromero
  */
-public class AsociacionProductoATicket {
+public class Producto_Ticket {
     
 }
