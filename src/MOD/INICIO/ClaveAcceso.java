@@ -1,5 +1,9 @@
 package MOD.INICIO;
 
+import MOD.USER.ProductoUsuario;
+import MOD.USER.PrincipalUsuario;
+import MOD.USER.Venta;
+import MOD.USER.Ticket;
 
 public class ClaveAcceso extends javax.swing.JFrame {
 
@@ -141,6 +145,12 @@ public class ClaveAcceso extends javax.swing.JFrame {
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         //Login al sistema.
+        //Estos new´s los puse para que puedan visualizar estas ventanas.
+        //Es un ejemplo por que aun no programamos movernos entre el sistema
+        new ProductoUsuario().setVisible(true);
+        new PrincipalUsuario().setVisible(true);
+        new Venta().setVisible(true);
+        new Ticket().setVisible(true);
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

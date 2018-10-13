@@ -1,8 +1,8 @@
 package MOD.USER;
 
-public class venta extends javax.swing.JFrame {
+public class Venta extends javax.swing.JFrame {
 
-    public venta() {
+    public Venta() {
         initComponents();
     }
 
@@ -32,6 +32,8 @@ public class venta extends javax.swing.JFrame {
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("VENTA");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/intelisoft.png")).getImage());
 
         panelVenta.setBackground(new java.awt.Color(153, 153, 255));
 
