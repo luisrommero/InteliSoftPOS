@@ -6,7 +6,8 @@
 package API.SIST;
 
 import java.util.UUID;
-
+import java.util.Date;
+import java.text.SimpleDateFormat;
 /**
  *
  * @author Luis Romero
@@ -15,6 +16,11 @@ public class Utilities {
     
     public String GetRandomUUID() {
         return (UUID.randomUUID().toString());
+    }
+    public String GetFecha(){
+        Date fecha =  new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
+        return formato.format(fecha);
     }
     
 }

@@ -1,9 +1,18 @@
 package MOD.USER;
 
+import API.ADMI.Producto;
+import API.SIST.Utilities;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 public class ProductoUsuario extends javax.swing.JFrame {
 
     public ProductoUsuario() {
         initComponents();
+        mostrarTabla();
+        Utilities utilities = new Utilities();
+        txtFecha.setText(utilities.GetFecha());
+        
     }
     
     @SuppressWarnings("unchecked")
@@ -18,7 +27,7 @@ public class ProductoUsuario extends javax.swing.JFrame {
         txtFecha = new javax.swing.JTextField();
         botonSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaListaDeProductos = new javax.swing.JTable();
+        tablaProductos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LISTADO DE PRODUCTOS");
@@ -28,7 +37,9 @@ public class ProductoUsuario extends javax.swing.JFrame {
         panelProductoUsuario.setBackground(new java.awt.Color(153, 153, 255));
 
         labelListaDeProductos.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        labelListaDeProductos.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         labelListaDeProductos.setText("LISTADO DE PRODUCTOS");
+        labelListaDeProductos.setToolTipText("");
 
         labelBienvenidoUsuario.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelBienvenidoUsuario.setText("BIENVENIDO USUARIO:");
@@ -38,13 +49,15 @@ public class ProductoUsuario extends javax.swing.JFrame {
 
         txtBienvenidoUsuario.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
+        txtFecha.setEditable(false);
+        txtFecha.setBackground(new java.awt.Color(153, 153, 255));
         txtFecha.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
         botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/SALIR.png"))); // NOI18N
         botonSalir.setToolTipText("Salir");
         botonSalir.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        tablaListaDeProductos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -52,7 +65,7 @@ public class ProductoUsuario extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tablaListaDeProductos);
+        jScrollPane1.setViewportView(tablaProductos);
 
         javax.swing.GroupLayout panelProductoUsuarioLayout = new javax.swing.GroupLayout(panelProductoUsuario);
         panelProductoUsuario.setLayout(panelProductoUsuarioLayout);
@@ -68,15 +81,15 @@ public class ProductoUsuario extends javax.swing.JFrame {
                         .addGap(81, 81, 81)
                         .addComponent(labelFecha)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 265, Short.MAX_VALUE))
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProductoUsuarioLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProductoUsuarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(306, Short.MAX_VALUE)
                 .addComponent(labelListaDeProductos)
                 .addGap(264, 264, 264))
         );
@@ -112,6 +125,67 @@ public class ProductoUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    void mostrarTabla(){
+        String[] nombres = {"ID","UPC","Producto","Descripcion","Clasificacion","Existencia","Precio sin IVA"};  
+        ArrayList<Producto> ListaDeProductos = new Producto().GetAllProducto();
+        if (ListaDeProductos==null){
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.setColumnIdentifiers(nombres);
+            tablaProductos.setModel(modelo);
+        }else{
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.setColumnIdentifiers(nombres);
+            
+   
+            Object[] fila = new Object[modelo.getColumnCount()];
+
+            for (int i = 0; i < ListaDeProductos.size(); i++) {
+
+                fila[0] = ListaDeProductos.get(i).getIdProducto();
+                fila[1] = ListaDeProductos.get(i).getUpc();
+                fila[2] = ListaDeProductos.get(i).getNombreProd();
+                fila[3] = ListaDeProductos.get(i).getDescripcion();
+                fila[4] = ListaDeProductos.get(i).getClasificacion();
+                fila[5] = ListaDeProductos.get(i).getExistencia();
+                fila[6] = ListaDeProductos.get(i).getPrecioSinIva();
+
+                modelo.addRow(fila);
+            }
+            tablaProductos.setModel(modelo);
+        }
+     }     
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ProductoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ProductoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ProductoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ProductoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ProductoUsuario().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir;
@@ -120,7 +194,7 @@ public class ProductoUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelListaDeProductos;
     private javax.swing.JPanel panelProductoUsuario;
-    private javax.swing.JTable tablaListaDeProductos;
+    private javax.swing.JTable tablaProductos;
     private javax.swing.JTextField txtBienvenidoUsuario;
     private javax.swing.JTextField txtFecha;
     // End of variables declaration//GEN-END:variables
