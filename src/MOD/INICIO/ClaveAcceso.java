@@ -4,7 +4,8 @@ import MOD.USER.ProductoUsuario;
 import MOD.USER.PrincipalUsuario;
 import MOD.USER.Venta;
 import MOD.USER.Ticket;
-
+import MOD.ADMI.Reportes;
+import MOD.ADMI.PrincipalAdmin;
 public class ClaveAcceso extends javax.swing.JFrame {
 
     public ClaveAcceso() {
@@ -151,6 +152,8 @@ public class ClaveAcceso extends javax.swing.JFrame {
         new PrincipalUsuario().setVisible(true);
         new Venta().setVisible(true);
         new Ticket().setVisible(true);
+        new Reportes().setVisible(true);
+        new PrincipalAdmin().setVisible(true);
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
