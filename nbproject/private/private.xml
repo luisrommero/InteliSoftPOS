@@ -3,9 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Alfre/Documents/NetBeansProjects/InteliSoftPOS/src/MOD/INICIO/ClaveAcceso.java</file>
             <file>file:/C:/Users/Alfre/Documents/NetBeansProjects/InteliSoftPOS/src/MOD/USER/PrincipalUsuario.java</file>
             <file>file:/C:/Users/Alfre/Documents/NetBeansProjects/InteliSoftPOS/src/MOD/ADMI/PrincipalAdmin.java</file>
+=======
+            <file>file:/C:/Users/Zenbook/Documents/NetBeansProjects/InteliSoftPOS/src/MOD/ADMI/producto_administrador.java</file>
+            <file>file:/C:/Users/Zenbook/Documents/NetBeansProjects/InteliSoftPOS/src/MOD/USER/ProductoUsuario.java</file>
+            <file>file:/C:/Users/Zenbook/Documents/NetBeansProjects/InteliSoftPOS/src/MOD/USER/PrincipalUsuario.java</file>
+>>>>>>> b18416fa86e23ddae3f266da5ec4b4738048e8cd
         </group>
     </open-files>
 </project-private>
