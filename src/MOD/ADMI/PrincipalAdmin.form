@@ -91,6 +91,13 @@
                       <Component id="txtFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jButton1" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="jButton2" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="jButton3" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="jBventa" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+=======
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="botonUsuario" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
@@ -100,6 +107,7 @@
                           <Component id="botonTicket" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
                           <Component id="botonVenta" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
+>>>>>>> b18416fa86e23ddae3f266da5ec4b4738048e8cd
                   </Group>
                   <EmptySpace pref="49" max="32767" attributes="0"/>
               </Group>

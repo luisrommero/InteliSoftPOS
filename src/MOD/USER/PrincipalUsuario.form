@@ -99,7 +99,11 @@
                           <Component id="botonTicket" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+<<<<<<< HEAD
+                  <EmptySpace pref="85" max="32767" attributes="0"/>
+=======
                   <EmptySpace max="-2" attributes="0"/>
+>>>>>>> b18416fa86e23ddae3f266da5ec4b4738048e8cd
               </Group>
           </Group>
         </DimensionLayout>

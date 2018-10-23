@@ -1,15 +1,45 @@
 package MOD.INICIO;
 
-import MOD.USER.ProductoUsuario;
-import MOD.USER.PrincipalUsuario;
-import MOD.USER.Venta;
-import MOD.USER.Ticket;
-import MOD.ADMI.Reportes;
 import MOD.ADMI.PrincipalAdmin;
+import MOD.USER.PrincipalUsuario;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 public class ClaveAcceso extends javax.swing.JFrame {
 
     public ClaveAcceso() {
         initComponents();
+    }
+    
+    void Login(){
+        //Usuarios
+        String Usuario="Admin";
+        String Contraseña="Admin18";
+        
+        String Usuario2="Empleado";
+        String Contraseña2="Empleado";
+        
+        
+        String Pass = new String(passContraseña.getText());
+        
+        if(txtUsuario.getText().equals(Usuario) && Pass.equals(Contraseña)){
+            PrincipalAdmin pa = new PrincipalAdmin();
+            pa.setVisible(true);
+            dispose();
+        }
+        
+        else if(txtUsuario.getText().equals(Usuario2) && Pass.equals(Contraseña2)){
+            PrincipalUsuario pu = new PrincipalUsuario();
+            pu.setVisible(true);
+            dispose();
+        }
+        
+        else{
+            txtUsuario.setText(null);
+            passContraseña.setText(null);
+            JOptionPane.showMessageDialog(this, " Usuario / Contraseña \n  Incorrecta");
+            
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -54,7 +84,6 @@ public class ClaveAcceso extends javax.swing.JFrame {
         txtUsuario.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
         passContraseña.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        passContraseña.setToolTipText("");
 
         botonAceptar.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         botonAceptar.setForeground(new java.awt.Color(0, 153, 51));
@@ -88,10 +117,10 @@ public class ClaveAcceso extends javax.swing.JFrame {
                             .addComponent(labelUsuario)
                             .addGap(36, 36, 36)
                             .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClaveAccesoLayout.createSequentialGroup()
+                        .addGroup(panelClaveAccesoLayout.createSequentialGroup()
                             .addComponent(labelContraseña)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(passContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(passContraseña)))
                     .addGroup(panelClaveAccesoLayout.createSequentialGroup()
                         .addComponent(botonAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -115,7 +144,7 @@ public class ClaveAcceso extends javax.swing.JFrame {
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelUsuario)
                     .addComponent(labelTitulo))
-                .addGap(29, 29, 29)
+                .addGap(28, 28, 28)
                 .addGroup(panelClaveAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelClaveAccesoLayout.createSequentialGroup()
                         .addGroup(panelClaveAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -145,15 +174,7 @@ public class ClaveAcceso extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
-        //Login al sistema.
-        //Estos new´s los puse para que puedan visualizar estas ventanas.
-        //Es un ejemplo por que aun no programamos movernos entre el sistema
-        new ProductoUsuario().setVisible(true);
-        new PrincipalUsuario().setVisible(true);
-        new Venta().setVisible(true);
-        new Ticket().setVisible(true);
-        new Reportes().setVisible(true);
-        new PrincipalAdmin().setVisible(true);
+        Login();
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
