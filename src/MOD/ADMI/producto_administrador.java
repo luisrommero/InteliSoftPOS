@@ -116,6 +116,11 @@ public class producto_administrador extends javax.swing.JFrame {
         });
 
         jButtonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/SALIR.png"))); // NOI18N
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
         jLabel5.setText("UPC:");
@@ -427,6 +432,13 @@ public class producto_administrador extends javax.swing.JFrame {
         mostrarTabla();
         txtid.setVisible(false);
     }//GEN-LAST:event_formWindowOpened
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        PrincipalAdmin pa = new PrincipalAdmin();
+        pa.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonSalirActionPerformed
 
     /**
      * @param args the command line arguments

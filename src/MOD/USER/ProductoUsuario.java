@@ -56,6 +56,11 @@ public class ProductoUsuario extends javax.swing.JFrame {
         botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/SALIR.png"))); // NOI18N
         botonSalir.setToolTipText("Salir");
         botonSalir.setPreferredSize(new java.awt.Dimension(50, 50));
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
 
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,6 +129,13 @@ public class ProductoUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        // TODO add your handling code here:
+        PrincipalUsuario pu = new PrincipalUsuario();
+        pu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
 
     void mostrarTabla(){
         String[] nombres = {"ID","UPC","Producto","Descripcion","Clasificacion","Existencia","Precio sin IVA"};  

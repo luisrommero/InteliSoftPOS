@@ -36,10 +36,20 @@ public class PrincipalUsuario extends javax.swing.JFrame {
         botonProducto.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/PRODUCTOS.png"))); // NOI18N
         botonProducto.setToolTipText("Productos");
+        botonProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonProductoActionPerformed(evt);
+            }
+        });
 
         botonTicket.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/TICKET.png"))); // NOI18N
         botonTicket.setToolTipText("Ticket");
+        botonTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonTicketActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelMenuPrincipalLayout = new javax.swing.GroupLayout(panelMenuPrincipal);
         panelMenuPrincipal.setLayout(panelMenuPrincipalLayout);
@@ -102,6 +112,20 @@ public class PrincipalUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProductoActionPerformed
+        // TODO add your handling code here:
+        ProductoUsuario pu = new ProductoUsuario();
+            pu.setVisible(true);
+            dispose();
+    }//GEN-LAST:event_botonProductoActionPerformed
+
+    private void botonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTicketActionPerformed
+        // TODO add your handling code here:
+        TICKET1 ti = new TICKET1();
+            ti.setVisible(true);
+            dispose();
+    }//GEN-LAST:event_botonTicketActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
