@@ -1,13 +1,10 @@
 package MOD.ADMI;
 
 import API.ADMI.Usuario;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 public class agregarUsuario extends javax.swing.JFrame {
 
@@ -127,6 +124,11 @@ public class agregarUsuario extends javax.swing.JFrame {
 
         botonAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/AGREGAR.png"))); // NOI18N
         botonAgregar.setToolTipText("Agregar");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarActionPerformed(evt);
+            }
+        });
 
         botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/EDITAR.png"))); // NOI18N
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -419,6 +421,38 @@ public class agregarUsuario extends javax.swing.JFrame {
         pa.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+        String claveEmpleado = txtClaveEmpleado.getText();
+        String password = txtPassword.getText();
+        String nombreEmpleado = txtNombreEmpleado.getText();
+        String aPaterno = txtApellidoPaterno.getText();
+        String aMaterno = txtApellidoMaterno.getText();
+        String direccion = txtDireccion.getText();
+        String tipo = (String) cmbTipoUsuario.getSelectedItem();
+        if (claveEmpleado.isEmpty() || nombreEmpleado.isEmpty()|| aPaterno.isEmpty() || aMaterno.isEmpty() || direccion.isEmpty() || password.isEmpty() ){
+            JOptionPane.showMessageDialog(null, "No se han llenado todos los campos", "Llenar campos", JOptionPane.ERROR_MESSAGE); 
+        }else{
+            Usuario Usuario = new Usuario().getNuevo();
+            String idUsuario = Usuario.getIdUsuario();
+            Usuario.setIdUsuario(idUsuario);
+            Usuario.setClaveEmpleado(claveEmpleado);
+            Usuario.setPassword(password);
+            Usuario.setNombreEmpleado(nombreEmpleado);
+            Usuario.setAPaterno(aPaterno);
+            Usuario.setAMaterno(aMaterno);
+            Usuario.setDireccion(direccion);
+            Usuario.setTipoUsuario(tipo);
+        
+            if(Usuario.InsertRegistro(Usuario)){
+                JOptionPane.showMessageDialog(null, "Usuario agregado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                mostrarTabla();
+                limpiar();
+            }else{
+                JOptionPane.showMessageDialog(null, "Usuario no agregado", "Error al guardar", JOptionPane.ERROR_MESSAGE);
+            }
+        }      
+    }//GEN-LAST:event_botonAgregarActionPerformed
 
   
     public static void main(String args[]) {
