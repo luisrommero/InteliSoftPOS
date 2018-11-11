@@ -122,9 +122,9 @@ public class PrincipalUsuario extends javax.swing.JFrame {
 
     private void botonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTicketActionPerformed
         // TODO add your handling code here:
-        TICKET1 ti = new TICKET1();
+        /*TICKET1 ti = new TICKET1();
             ti.setVisible(true);
-            dispose();
+            dispose();*/
     }//GEN-LAST:event_botonTicketActionPerformed
 
 
