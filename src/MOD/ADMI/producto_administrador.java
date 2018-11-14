@@ -289,9 +289,9 @@ public class producto_administrador extends javax.swing.JFrame {
                         .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelProductosAdmiLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                                .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButtonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanelProductosAdmiLayout.createSequentialGroup()
                                 .addGap(15, 15, 15)
@@ -337,13 +337,13 @@ public class producto_administrador extends javax.swing.JFrame {
             for (int i = 0; i < ListaDeProductos.size(); i++) {
 
                 fila[0] = ListaDeProductos.get(i).getIdProducto();
-                fila[1] = ListaDeProductos.get(i).getUpc();
-                fila[2] = ListaDeProductos.get(i).getNombreProd();
+                fila[1] = ListaDeProductos.get(i).getUPC();
+                fila[2] = ListaDeProductos.get(i).getNombreProducto();
                 fila[3] = ListaDeProductos.get(i).getDescripcion();
                 fila[4] = ListaDeProductos.get(i).getClasificacion();
                 fila[5] = ListaDeProductos.get(i).getExistencia();
                 fila[6] = ListaDeProductos.get(i).getCodigoSat();
-                fila[7] = ListaDeProductos.get(i).getPrecioSinIva();
+                fila[7] = ListaDeProductos.get(i).getPrecioSinIVA();
                 fila[8] = ListaDeProductos.get(i).getTasaCero();
                 fila[9] = ListaDeProductos.get(i).getCosto();
                 modelo.addRow(fila);
@@ -367,13 +367,13 @@ public class producto_administrador extends javax.swing.JFrame {
             Object[] fila = new Object[modelo.getColumnCount()];
 
             fila[0] = Producto.getIdProducto();
-            fila[1] = Producto.getUpc();
-            fila[2] = Producto.getNombreProd();
+            fila[1] = Producto.getUPC();
+            fila[2] = Producto.getNombreProducto();
             fila[3] = Producto.getDescripcion();
             fila[4] = Producto.getClasificacion();
             fila[5] = Producto.getExistencia();
             fila[6] = Producto.getCodigoSat();
-            fila[7] = Producto.getPrecioSinIva();
+            fila[7] = Producto.getPrecioSinIVA();
             fila[8] = Producto.getTasaCero();
             fila[9] = Producto.getCosto();
             modelo.addRow(fila);        
@@ -421,15 +421,15 @@ public class producto_administrador extends javax.swing.JFrame {
 
                 Producto Producto = new Producto().getNuevo();
                 //String idProducto = Producto.getIdProducto();
-                Producto.setUpc(upc);
+                Producto.setUPC(upc);
                 Producto.setNombreProducto(nombreProd);
                 Producto.setDescripcion(descripcion);
                 Producto.setClasificacion(clasificacion);
                 Producto.setExistencia(existencia);
-                Producto.setCodigoSat(codigoSat);
-                Producto.setPrecioSinIva(precioSinIva);
-                Producto.setTasaCero(tasaCero);
-                Producto.setCosto(costo);
+                Producto.setCodigoSat(Double.NaN);
+                Producto.setPrecioSinIVA(Double.POSITIVE_INFINITY);
+                Producto.setTasaCero(Double.NaN);
+                Producto.setCosto(Double.POSITIVE_INFINITY);
         
                 if(Producto.InsertRegistro(Producto)){
                     JOptionPane.showMessageDialog(null, "Usuario agregado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);

@@ -1,46 +1,56 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package API.ADMI;
-
 import java.util.ArrayList;
 import API.SIST.*;
 
+/**
+ *
+ * @author luisromero
+ */
 public class Producto {
-    private String idProducto;
-    private String upc;
-    private String nombreProd;
-    private String descripcion;
-    private String clasificacion;
-    private String existencia;
-    private String codigoSat;
-    private String precioSinIva;
-    private String tasaCero;
-    private String costo;
+    
+    private String IdProducto;
+    private String UPC;
+    private String NombreProducto;
+    private String Descripcion;
+    private String Clasificacion; 
+    private String Existencia; 
+    private Double CodigoSat;
+    private Double PrecioSinIVA;
+    private Double TasaCero;
+    private Double Costo;
+    
     //--
-    private final static String TABLE_NAME = "producto";
+    private final static String TABLE_NAME = "ticket";
     
     public Producto()
     {
-        this.ResetAttributies();
+        this.ResetAttributes();
     }
     
-    public Boolean InsertRegistro(Producto P)
+    public Boolean InsertRegistro(Producto U)
     {
         String Query = "INSERT INTO `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` VALUES("
-        + "'" + P.idProducto + "',"
-        + "'" + P.upc + "',"
-        + "'" + P.nombreProd + "',"
-        + "'" + P.descripcion + "',"
-        + "'" + P.clasificacion + "',"
-        + "'" + P.existencia + "',"
-        + "'" + P.codigoSat + "',"
-        + "'" + P.precioSinIva + "',"
-        + "'" + P.tasaCero + "',"
-        + "'" + P.costo + "')";
+        + "'" + U.IdProducto + "',"
+        + "'" + U.UPC + "',"
+        + "'" + U.NombreProducto + "'," //string
+        + "'" + U.Descripcion + "',"
+        + "'" + U.Clasificacion + "',"
+        + "'" + U.Existencia + "',"
+        + "" + U.CodigoSat + ","
+        + "" + U.PrecioSinIVA + ","
+        + "" + U.TasaCero + ","
+        + "" + U.Costo + ")";
         //--
         int AffectedRows = new BaseDeDatos().EjecutarSentenciaINSERT(Query);
         if(AffectedRows == 1) return(true);
         else return(false);
     }
-    
+
     public Producto GetRegistro(String Id)
     {
         String Query = "SELECT * FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` WHERE `idproducto` = '" + Id + "';";
@@ -49,16 +59,16 @@ public class Producto {
         {
             Producto Producto = new Producto();
             //--
-            Producto.idProducto = ListaDeFilas.get(0).get(0);
-            Producto.upc = ListaDeFilas.get(0).get(1);
-            Producto.nombreProd = ListaDeFilas.get(0).get(2);
-            Producto.descripcion = ListaDeFilas.get(0).get(3);
-            Producto.clasificacion = ListaDeFilas.get(0).get(4);
-            Producto.existencia = ListaDeFilas.get(0).get(5);
-            Producto.codigoSat = ListaDeFilas.get(0).get(6);
-            Producto.precioSinIva= ListaDeFilas.get(0).get(7);
-            Producto.tasaCero= ListaDeFilas.get(0).get(8);
-            Producto.costo= ListaDeFilas.get(0).get(9);
+            Producto.IdProducto = ListaDeFilas.get(0).get(0);
+            Producto.UPC = ListaDeFilas.get(0).get(1);
+            Producto.NombreProducto = ListaDeFilas.get(0).get(2);
+            Producto.Descripcion = ListaDeFilas.get(0).get(3);
+            Producto.Clasificacion = ListaDeFilas.get(0).get(4);
+            Producto.Existencia = ListaDeFilas.get(0).get(5);
+            Producto.CodigoSat = Double.parseDouble(ListaDeFilas.get(0).get(6));
+            Producto.PrecioSinIVA = Double.parseDouble(ListaDeFilas.get(0).get(7));
+            Producto.TasaCero = Double.parseDouble(ListaDeFilas.get(0).get(8));
+            Producto.Costo = Double.parseDouble(ListaDeFilas.get(0).get(9));
             //--
             return (Producto);
         }
@@ -68,11 +78,11 @@ public class Producto {
             return null;
         }
     }
-    
+
     public ArrayList<Producto> GetAllProducto()
     {
         ArrayList<Producto> Lista = new ArrayList<Producto>();
-        String Query = "SELECT `idProducto` FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` ";
+        String Query = "SELECT `idproducto` FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` ";
         ArrayList<ArrayList<String>> ListaDeFilas = new BaseDeDatos().EjecutarSentenciaSELECT(Query);
         //--
         if (!ListaDeFilas.isEmpty()) {
@@ -92,66 +102,66 @@ public class Producto {
             return (null);
         }
     }
-    
-    public boolean Update_Registro(String Id, Producto P)
+
+    public boolean Update_Registro(String Id, Producto U)
     {
+        
         String Query = "UPDATE `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` SET"
-        + "`idproducto` = '" + P.idProducto + "', "
-        + "`upc` = '" + P.upc + "', "
-        + "`nombreproducto` = '" + P.nombreProd + "', "
-        + "`descripcion` = '" + P.descripcion + "', "
-        + "`clasificacion` = '" + P.clasificacion + "', "
-        + "`existencia` = '" + P.existencia + "', "
-        + "`codigosat` = '" + P.codigoSat + "', "
-        + "`preciosiniva` = '" + P.precioSinIva + "', "
-        + "`tasacero` = '" + P.tasaCero + "', "
-        + "`costo` = '" + P.costo + "' "
-        + "WHERE `idproducto` = '" + Id + "';";
+        //+ "`idproducto` = '" + U.IdProducto + "', "
+        + "`upc` = " + U.UPC + ", "
+        + "`nombreproducto` = '" + U.NombreProducto + "', "
+        + "`descripcion` = '" + U.Descripcion + "', "
+        + "`existencia` = '" + U.Existencia + "', "
+        + "`codigosat` = " + U.CodigoSat + ", "
+        + "`preciosiniva` = " + U.PrecioSinIVA + ", "
+        + "`tasacero` = " + U.TasaCero + ", "        
+        + "`costo` = '" + U.Costo + "' "
+        + "WHERE `idticket` = '" + Id + "';";
         //--
         int AffectedRows = new BaseDeDatos().EjecutarSentenciaUPDATE(Query);
         if(AffectedRows == 1) return(true);
         else return(false);
     }
-    
+
     public boolean UpdateRegistroPorCampo(String Id, String Campo, String Valor)
     {
         String Query = "UPDATE  `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` SET"
         + "`" + Campo + "` = '" + Valor + "' "
-        + "WHERE `idProducto` = '" + idProducto + "';";
+        + "WHERE `idproducto` = '" + Id + "';";
         //--
         int AffectedRows = new BaseDeDatos().EjecutarSentenciaUPDATE(Query);
         //--
         return(AffectedRows == 1);
     }
-    
+
     public boolean DeleteRegistro(String id)
     {
-        String Query = "DELETE FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` WHERE `idProducto` = '" + id + "';";
+        String Query = "DELETE FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` WHERE `idproducto` = '" + id + "';";
         int affectedRows = new BaseDeDatos().EjecutarSentenciaDELETE(Query);
         return(affectedRows == 1);
     }
-    
+
     public Producto getNuevo()
     {
         Producto Producto = new Producto();
-        Producto.idProducto = this.GetIdUnicoParaProducto();
+        Producto.IdProducto = this.GetIdUnicoParaProducto();
         return (Producto);
     }
-    
+
     private String GetIdUnicoParaProducto() {
         Utilities utilities = new Utilities();
         while (true) {
             String UUID = utilities.GetRandomUUID();
-            String IdModulo = UUID.substring(0,10);
+            String IdModulo = UUID.substring(10, UUID.length());
             if (this.IsIdUnique(IdModulo)) {
                 return (IdModulo);
             }
         }
     }
-    
+
     private boolean IsIdUnique(String Id)
     {
-        String Query = "SELECT `idProducto` FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` WHERE `idProducto` = '" + Id + "';";
+        String Query = "SELECT `idproducto` FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` WHERE `idproducto` = '" + Id + "';";
         ArrayList<ArrayList<String>> ListaDeFilas = new BaseDeDatos().EjecutarSentenciaSELECT(Query);
         //--
         try {
@@ -168,113 +178,116 @@ public class Producto {
     
     public String getIdProducto()
     {
-        return(this.idProducto);
-    }
-    
-    public String getUpc()
-    {
-        return(this.upc);
-    }
-    public String getNombreProd()
-    {
-        return(this.nombreProd);
-    }
-    
-    public String getDescripcion()
-    {
-        return(this.descripcion);
-    }
-    
-    public String getClasificacion()
-    {
-        return(this.clasificacion);
-    }
-    
-    public String getExistencia()
-    {
-        return(this.existencia);
-    }
-    
-    public String getCodigoSat()
-    {
-        return(this.codigoSat);
-    }
-    
-    public String getPrecioSinIva()
-    {
-        return(this.precioSinIva);
-    }
-    
-    public String getTasaCero()
-    {
-        return(this.tasaCero);
-    }
-    
-    public String getCosto()
-    {
-        return(this.costo);
+        return(this.IdProducto);
     }
     
     public void setIdProducto(String IdProducto)
     {
-        this.idProducto = IdProducto;
+        this.IdProducto = IdProducto;
+    }
+
+    public String getUPC()
+    {
+        return(this.UPC);
     }
     
-    public void setUpc(String Upc)
+    public void setUPC(String UPC)
     {
-        this.upc = Upc;
+        this.UPC = UPC;
+    }
+    
+    public String getNombreProducto()
+    {
+        return(this.NombreProducto);
     }
     
     public void setNombreProducto(String NombreProducto)
     {
-        this.nombreProd = NombreProducto;
+        this.NombreProducto = NombreProducto;
+    }
+    
+    public String getDescripcion()
+    {
+        return(this.Descripcion);
     }
     
     public void setDescripcion(String Descripcion)
     {
-        this.descripcion = Descripcion;
+        this.Descripcion = Descripcion;
+    }
+    
+    public String getClasificacion()
+    {
+        return(this.Clasificacion);
     }
     
     public void setClasificacion(String Clasificacion)
     {
-        this.clasificacion = Clasificacion;
+        this.Clasificacion = Clasificacion;
+    }
+     
+    public String getExistencia()
+    {
+        return(this.Existencia);
     }
     
     public void setExistencia(String Existencia)
     {
-        this.existencia = Existencia;
+        this.Existencia = Existencia;
+    }
+     
+    public Double getCodigoSat()
+    {
+        return(this.CodigoSat);
     }
     
-    public void setCodigoSat(String CodigoSat)
+    public void setCodigoSat(Double CodigoSat)
     {
-        this.codigoSat = CodigoSat;
+        this.CodigoSat = CodigoSat;
     }
     
-    public void setPrecioSinIva(String PrecioSinIva)
+    public Double getPrecioSinIVA()
     {
-        this.precioSinIva = PrecioSinIva;
+        return(this.PrecioSinIVA);
     }
     
-    public void setTasaCero(String TasaCero)
+    public void setPrecioSinIVA(Double PrecioSinIVA)
     {
-        this.tasaCero = TasaCero;
+        this.PrecioSinIVA = PrecioSinIVA;
     }
     
-    public void setCosto(String Costo)
+    public Double getTasaCero()
     {
-        this.costo = Costo;
+        return(this.TasaCero);
+    }
+    
+    public void setTasaCero(Double TasaCero)
+    {
+        this.TasaCero = TasaCero;
+    }
+    public Double getCosto()
+    {
+        return(this.Costo);
+    }
+    
+    public void setCosto(Double PrecioSinIVA)
+    {
+        this.PrecioSinIVA = PrecioSinIVA;
+    }
+    
+    
+    public void ResetAttributes()
+    {
+        this.IdProducto = "";
+        this.UPC = "";
+        this.NombreProducto = "";
+        this.Descripcion = "";
+        this.Clasificacion = "";
+        this.Existencia = "";
+        this.CodigoSat = 0.0;
+        this.PrecioSinIVA = 0.0;
+        this.TasaCero = 0.0;
+        this.Costo = 0.0; 
     }
 
-    private void ResetAttributies() {
-        this.idProducto = "";
-        this.upc = "";
-        this.nombreProd = "";
-        this.descripcion = "";
-        this.clasificacion = "";
-        this.existencia = "";
-        this.codigoSat = "";
-        this.precioSinIva = "";
-        this.tasaCero = "";
-        this.costo = "";
-    }
 }

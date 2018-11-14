@@ -154,12 +154,12 @@ public class ProductoUsuario extends javax.swing.JFrame {
             for (int i = 0; i < ListaDeProductos.size(); i++) {
 
                 fila[0] = ListaDeProductos.get(i).getIdProducto();
-                fila[1] = ListaDeProductos.get(i).getUpc();
-                fila[2] = ListaDeProductos.get(i).getNombreProd();
+                fila[1] = ListaDeProductos.get(i).getUPC();
+                fila[2] = ListaDeProductos.get(i).getNombreProducto();
                 fila[3] = ListaDeProductos.get(i).getDescripcion();
                 fila[4] = ListaDeProductos.get(i).getClasificacion();
                 fila[5] = ListaDeProductos.get(i).getExistencia();
-                fila[6] = ListaDeProductos.get(i).getPrecioSinIva();
+                fila[6] = ListaDeProductos.get(i).getPrecioSinIVA();
 
                 modelo.addRow(fila);
             }
