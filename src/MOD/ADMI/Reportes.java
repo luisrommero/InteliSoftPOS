@@ -369,7 +369,7 @@ public class Reportes extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonAceptarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarReporteActionPerformed
-        // TODO add your handling code here:
+        GenerarReporte();
     }//GEN-LAST:event_botonAceptarReporteActionPerformed
 
 
