@@ -2,6 +2,8 @@ package MOD.USER;
 
 import API.ADMI.Producto;
 import API.SIST.Utilities;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -10,6 +12,11 @@ public class ProductoUsuario extends javax.swing.JFrame {
     public ProductoUsuario() {
         initComponents();
         mostrarTabla();
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;		
+        setLocationRelativeTo(null);		
+        setVisible(true);
         Utilities utilities = new Utilities();
         txtFecha.setText(utilities.GetFecha());
         
@@ -52,6 +59,7 @@ public class ProductoUsuario extends javax.swing.JFrame {
         txtFecha.setEditable(false);
         txtFecha.setBackground(new java.awt.Color(153, 153, 255));
         txtFecha.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        txtFecha.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/SALIR.png"))); // NOI18N
         botonSalir.setToolTipText("Salir");

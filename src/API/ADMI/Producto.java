@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package API.ADMI;
 import java.util.ArrayList;
 import API.SIST.*;
@@ -19,13 +14,13 @@ public class Producto {
     private String Descripcion;
     private String Clasificacion; 
     private String Existencia; 
-    private Double CodigoSat;
+    private String CodigoSat;
     private Double PrecioSinIVA;
     private Double TasaCero;
     private Double Costo;
     
     //--
-    private final static String TABLE_NAME = "ticket";
+    private final static String TABLE_NAME = "producto";
     
     public Producto()
     {
@@ -65,7 +60,7 @@ public class Producto {
             Producto.Descripcion = ListaDeFilas.get(0).get(3);
             Producto.Clasificacion = ListaDeFilas.get(0).get(4);
             Producto.Existencia = ListaDeFilas.get(0).get(5);
-            Producto.CodigoSat = Double.parseDouble(ListaDeFilas.get(0).get(6));
+            Producto.CodigoSat = ListaDeFilas.get(0).get(6);
             Producto.PrecioSinIVA = Double.parseDouble(ListaDeFilas.get(0).get(7));
             Producto.TasaCero = Double.parseDouble(ListaDeFilas.get(0).get(8));
             Producto.Costo = Double.parseDouble(ListaDeFilas.get(0).get(9));
@@ -82,7 +77,7 @@ public class Producto {
     public ArrayList<Producto> GetAllProducto()
     {
         ArrayList<Producto> Lista = new ArrayList<Producto>();
-        String Query = "SELECT `idproducto` FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` ";
+        String Query = "SELECT `idproducto` FROM `"+  ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` ";
         ArrayList<ArrayList<String>> ListaDeFilas = new BaseDeDatos().EjecutarSentenciaSELECT(Query);
         //--
         if (!ListaDeFilas.isEmpty()) {
@@ -236,12 +231,12 @@ public class Producto {
         this.Existencia = Existencia;
     }
      
-    public Double getCodigoSat()
+    public String getCodigoSat()
     {
         return(this.CodigoSat);
     }
     
-    public void setCodigoSat(Double CodigoSat)
+    public void setCodigoSat(String CodigoSat)
     {
         this.CodigoSat = CodigoSat;
     }
@@ -284,7 +279,7 @@ public class Producto {
         this.Descripcion = "";
         this.Clasificacion = "";
         this.Existencia = "";
-        this.CodigoSat = 0.0;
+        this.CodigoSat = "";
         this.PrecioSinIVA = 0.0;
         this.TasaCero = 0.0;
         this.Costo = 0.0; 

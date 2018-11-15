@@ -2,6 +2,8 @@ package MOD.INICIO;
 
 import MOD.ADMI.PrincipalAdmin;
 import MOD.USER.PrincipalUsuario;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -9,6 +11,11 @@ public class ClaveAcceso extends javax.swing.JFrame {
 
     public ClaveAcceso() {
         initComponents();
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;		
+        setLocationRelativeTo(null);		
+        setVisible(true);
     }
     
     void Login(){

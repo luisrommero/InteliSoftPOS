@@ -1,12 +1,81 @@
 package MOD.ADMI;
 
+
+import API.SIST.BaseDeDatos;
+import API.SIST.ConstantesDeBaseDeDatos;
+import API.SIST.Utilities;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.net.URL;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import net.sf.jasperreports.engine.JasperCompileManager;
+
+
 public class Reportes extends javax.swing.JFrame {
 
     public Reportes() {
         initComponents();
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;		
+        setLocationRelativeTo(null);		
+        setVisible(true);
     }
+    
+    BaseDeDatos bd = new BaseDeDatos();
+    
+    
+    
+    void GenerarReporte(){
+        
+        if(checkbox1.isValid()){
+            Reporte();
+        }
+        
+    }
+    
+    void Reporte(){
+        bd.Conectar();
+        
+        JasperReport reporte;
+       
+        //String tel = txtTelefono.getText();
+        
+         try {
+            URL  in = this.getClass().getResource("PorProducto.jasper");
+            reporte = (JasperReport) JRLoader.loadObject(in);
+            Map parametro = new HashMap();
+            
+            //parametro.put("TELEFONO", tel);
+            
+            JasperPrint j = JasperFillManager.fillReport(reporte, parametro, bd.ConexionActual);
+            
+            JasperViewer jv = new JasperViewer(j, false);
+            
+            jv.setTitle("Generar Reporte");
+            jv.setVisible(true);
+            
+          
+        } catch (JRException ex) {
+            Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex); 
+            ex.printStackTrace();
+        }
+        
+    }
+    
+    
 
-    @SuppressWarnings("unchecked")
+//    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -125,6 +194,7 @@ public class Reportes extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 153, 204));
         jLabel6.setText("Reportes:");
 
+        checkbox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         checkbox1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         checkbox1.setLabel("Resumen de ventas");
 

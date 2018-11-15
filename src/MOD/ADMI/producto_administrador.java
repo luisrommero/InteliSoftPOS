@@ -1,15 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MOD.ADMI;
 
 import API.ADMI.Producto;
+import API.SIST.ConstantesDeBaseDeDatos;
+import API.SIST.Utilities;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -18,6 +22,13 @@ public class producto_administrador extends javax.swing.JFrame {
 
     public producto_administrador() {
         initComponents();
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;		
+        setLocationRelativeTo(null);		
+        setVisible(true);
+        Utilities utilities = new Utilities();
+        jtxtFecha.setText(utilities.GetFecha());
     }
 
     @SuppressWarnings("unchecked")
@@ -31,7 +42,7 @@ public class producto_administrador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextFieldAdministrador = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldFecha = new javax.swing.JTextField();
+        jtxtFecha = new javax.swing.JTextField();
         jButtonAgregar = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
@@ -60,6 +71,7 @@ public class producto_administrador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Productos del Administrador");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/intelisoft.png")).getImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -94,7 +106,12 @@ public class producto_administrador extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("FECHA:");
 
-        jTextFieldFecha.setEnabled(false);
+        jtxtFecha.setEditable(false);
+        jtxtFecha.setBackground(new java.awt.Color(153, 153, 255));
+        jtxtFecha.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jtxtFecha.setToolTipText("");
+        jtxtFecha.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jtxtFecha.setEnabled(false);
 
         jButtonAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/AGREGAR.png"))); // NOI18N
         jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -166,8 +183,8 @@ public class producto_administrador extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanelProductosAdmiLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelProductosAdmiLayout.createSequentialGroup()
+                        .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelProductosAdmiLayout.createSequentialGroup()
                                 .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(jPanelProductosAdmiLayout.createSequentialGroup()
@@ -188,7 +205,7 @@ public class producto_administrador extends javax.swing.JFrame {
                                         .addGap(104, 104, 104)
                                         .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(63, 63, 63)
-                                .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanelProductosAdmiLayout.createSequentialGroup()
                                         .addComponent(jLabel14)
                                         .addGap(49, 49, 49)
@@ -215,20 +232,20 @@ public class producto_administrador extends javax.swing.JFrame {
                                                 .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(txtsat, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(txtexist, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelProductosAdmiLayout.createSequentialGroup()
+                            .addGroup(jPanelProductosAdmiLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextFieldAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(106, 106, 106)
-                                .addComponent(jLabel3)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(40, 40, 40)
+                                .addComponent(jtxtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(139, 139, 139))
             .addGroup(jPanelProductosAdmiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtbuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                .addComponent(txtbuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonBuscar)
                 .addGap(60, 60, 60)
@@ -248,7 +265,7 @@ public class producto_administrador extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -284,19 +301,16 @@ public class producto_administrador extends javax.swing.JFrame {
                                 .addComponent(txtclasif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel14)
                             .addComponent(txtcosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelProductosAdmiLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanelProductosAdmiLayout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(jButtonBuscar)))
-                        .addGap(32, 32, 32))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButtonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButtonBuscar, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(50, 50, 50))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProductosAdmiLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -426,7 +440,7 @@ public class producto_administrador extends javax.swing.JFrame {
                 Producto.setDescripcion(descripcion);
                 Producto.setClasificacion(clasificacion);
                 Producto.setExistencia(existencia);
-                Producto.setCodigoSat(Double.NaN);
+                Producto.setCodigoSat(codigoSat);
                 Producto.setPrecioSinIVA(Double.POSITIVE_INFINITY);
                 Producto.setTasaCero(Double.NaN);
                 Producto.setCosto(Double.POSITIVE_INFINITY);
@@ -550,7 +564,7 @@ public class producto_administrador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelProductosAdmi;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextFieldAdministrador;
-    private javax.swing.JTextField jTextFieldFecha;
+    private javax.swing.JTextField jtxtFecha;
     private javax.swing.JTable tableProducto;
     private javax.swing.JTextField txtbuscar;
     private javax.swing.JTextField txtclasif;

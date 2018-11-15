@@ -1,11 +1,20 @@
 package MOD.ADMI;
 
-//import MOD.USER.TICKET1;
+import MOD.ADMI.producto_administrador;
+import MOD.ADMI.agregarUsuario;
+import MOD.ADMI.Reportes;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 public class PrincipalAdmin extends javax.swing.JFrame {
 
     public PrincipalAdmin() {
         initComponents();
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;		
+        setLocationRelativeTo(null);		
+        setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -23,6 +32,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/intelisoft.png")).getImage());
 
         jPanel1.setBackground(new java.awt.Color(155, 155, 255));
 
@@ -51,8 +61,8 @@ public class PrincipalAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/TICKET.png"))); // NOI18N
-        jButton3.setToolTipText("Ticket");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/VENTA.png"))); // NOI18N
+        jButton3.setToolTipText("Reportes");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -133,7 +143,6 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
         producto_administrador pa = new producto_administrador();
         pa.setVisible(true);
         dispose();

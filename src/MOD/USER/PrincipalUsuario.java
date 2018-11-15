@@ -1,9 +1,19 @@
 package MOD.USER;
 
+import MOD.USER.ProductoUsuario;
+import MOD.USER.TICKET1;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 public class PrincipalUsuario extends javax.swing.JFrame {
 
     public PrincipalUsuario() {
         initComponents();
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;		
+        setLocationRelativeTo(null);		
+        setVisible(true);
     }
 
 
@@ -21,6 +31,7 @@ public class PrincipalUsuario extends javax.swing.JFrame {
         botonTicket = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/intelisoft.png")).getImage());
 
         panelMenuPrincipal.setBackground(new java.awt.Color(155, 155, 255));
 
@@ -114,7 +125,6 @@ public class PrincipalUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProductoActionPerformed
-        // TODO add your handling code here:
         ProductoUsuario pu = new ProductoUsuario();
             pu.setVisible(true);
             dispose();
