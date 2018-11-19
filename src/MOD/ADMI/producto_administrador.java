@@ -40,7 +40,6 @@ public class producto_administrador extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableProducto = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldAdministrador = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jtxtFecha = new javax.swing.JTextField();
         jButtonAgregar = new javax.swing.JButton();
@@ -99,9 +98,7 @@ public class producto_administrador extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tableProducto);
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel2.setText("BIENVENIDO ADMINISTRADOR:");
-
-        jTextFieldAdministrador.setEnabled(false);
+        jLabel2.setText("BIENVENIDO ADMINISTRADOR");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("FECHA:");
@@ -234,8 +231,6 @@ public class producto_administrador extends javax.swing.JFrame {
                                                     .addComponent(txtexist, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                             .addGroup(jPanelProductosAdmiLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
                                 .addGap(40, 40, 40)
@@ -263,7 +258,6 @@ public class producto_administrador extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addGroup(jPanelProductosAdmiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextFieldAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jtxtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
@@ -563,7 +557,6 @@ public class producto_administrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelProductosAdmi;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextFieldAdministrador;
     private javax.swing.JTextField jtxtFecha;
     private javax.swing.JTable tableProducto;
     private javax.swing.JTextField txtbuscar;

@@ -4,8 +4,10 @@ package MOD.ADMI;
 import API.SIST.BaseDeDatos;
 import API.SIST.ConstantesDeBaseDeDatos;
 import API.SIST.Utilities;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.net.URI;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.HashMap;
@@ -290,6 +292,11 @@ public class Reportes extends javax.swing.JFrame {
         botonAyuda.setForeground(new java.awt.Color(0, 102, 102));
         botonAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/AYUDA.png"))); // NOI18N
         botonAyuda.setToolTipText("Ayuda");
+        botonAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAyudaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelReportes2Layout = new javax.swing.GroupLayout(panelReportes2);
         panelReportes2.setLayout(panelReportes2Layout);
@@ -371,6 +378,17 @@ public class Reportes extends javax.swing.JFrame {
     private void botonAceptarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarReporteActionPerformed
         GenerarReporte();
     }//GEN-LAST:event_botonAceptarReporteActionPerformed
+
+    private void botonAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAyudaActionPerformed
+        // TODO add your handling code here:
+        try{
+      
+        Desktop.getDesktop().browse(new URI("file:///C:/Users/alexd/OneDrive/Documents/NetBeansProjects/InteliSoftPOS/Manual-De-Usuario.pdf"));
+        
+        } catch(Exception e){
+            System.out.print(e.getMessage());
+            }
+    }//GEN-LAST:event_botonAyudaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

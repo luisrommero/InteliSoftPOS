@@ -25,7 +25,6 @@ public class PrincipalUsuario extends javax.swing.JFrame {
         labelMenuPrincipal = new javax.swing.JLabel();
         labelBienvenidoUsuario = new javax.swing.JLabel();
         labelFecha = new javax.swing.JLabel();
-        textBienvenidoUsuario = new javax.swing.JTextField();
         txtFecha = new javax.swing.JTextField();
         botonProducto = new javax.swing.JButton();
         botonTicket = new javax.swing.JButton();
@@ -39,7 +38,7 @@ public class PrincipalUsuario extends javax.swing.JFrame {
         labelMenuPrincipal.setText("MENÚ PRINCIPAL");
 
         labelBienvenidoUsuario.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        labelBienvenidoUsuario.setText("BIENVENIDO USUARIO:");
+        labelBienvenidoUsuario.setText("BIENVENIDO USUARIO");
 
         labelFecha.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelFecha.setText("FECHA:");
@@ -71,10 +70,7 @@ public class PrincipalUsuario extends javax.swing.JFrame {
                     .addGroup(panelMenuPrincipalLayout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(panelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelMenuPrincipalLayout.createSequentialGroup()
-                                .addComponent(labelBienvenidoUsuario)
-                                .addGap(18, 18, 18)
-                                .addComponent(textBienvenidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelBienvenidoUsuario)
                             .addGroup(panelMenuPrincipalLayout.createSequentialGroup()
                                 .addGap(67, 67, 67)
                                 .addComponent(botonProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,22 +84,20 @@ public class PrincipalUsuario extends javax.swing.JFrame {
                     .addGroup(panelMenuPrincipalLayout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addComponent(labelMenuPrincipal)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         panelMenuPrincipalLayout.setVerticalGroup(
             panelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMenuPrincipalLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(labelMenuPrincipal)
-                .addGap(30, 30, 30)
-                .addGroup(panelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelBienvenidoUsuario)
-                    .addComponent(textBienvenidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addComponent(labelBienvenidoUsuario)
                 .addGap(18, 18, 18)
                 .addGroup(panelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelFecha)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(panelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonProducto)
                     .addComponent(botonTicket))
@@ -145,7 +139,6 @@ public class PrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelMenuPrincipal;
     private javax.swing.JPanel panelMenuPrincipal;
-    private javax.swing.JTextField textBienvenidoUsuario;
     private javax.swing.JTextField txtFecha;
     // End of variables declaration//GEN-END:variables
 }

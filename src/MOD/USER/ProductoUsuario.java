@@ -30,7 +30,6 @@ public class ProductoUsuario extends javax.swing.JFrame {
         labelListaDeProductos = new javax.swing.JLabel();
         labelBienvenidoUsuario = new javax.swing.JLabel();
         labelFecha = new javax.swing.JLabel();
-        txtBienvenidoUsuario = new javax.swing.JTextField();
         txtFecha = new javax.swing.JTextField();
         botonSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -49,12 +48,10 @@ public class ProductoUsuario extends javax.swing.JFrame {
         labelListaDeProductos.setToolTipText("");
 
         labelBienvenidoUsuario.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        labelBienvenidoUsuario.setText("BIENVENIDO USUARIO:");
+        labelBienvenidoUsuario.setText("BIENVENIDO USUARIO");
 
         labelFecha.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelFecha.setText("FECHA:");
-
-        txtBienvenidoUsuario.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
         txtFecha.setEditable(false);
         txtFecha.setBackground(new java.awt.Color(153, 153, 255));
@@ -89,9 +86,7 @@ public class ProductoUsuario extends javax.swing.JFrame {
                 .addGroup(panelProductoUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelProductoUsuarioLayout.createSequentialGroup()
                         .addComponent(labelBienvenidoUsuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBienvenidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
+                        .addGap(215, 215, 215)
                         .addComponent(labelFecha)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -114,7 +109,6 @@ public class ProductoUsuario extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(panelProductoUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelBienvenidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBienvenidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelFecha)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -215,7 +209,6 @@ public class ProductoUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel labelListaDeProductos;
     private javax.swing.JPanel panelProductoUsuario;
     private javax.swing.JTable tablaProductos;
-    private javax.swing.JTextField txtBienvenidoUsuario;
     private javax.swing.JTextField txtFecha;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,8 +2,10 @@ package MOD.INICIO;
 
 import MOD.ADMI.PrincipalAdmin;
 import MOD.USER.PrincipalUsuario;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.net.URI;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -106,6 +108,11 @@ public class ClaveAcceso extends javax.swing.JFrame {
         botonAyuda.setForeground(new java.awt.Color(153, 0, 0));
         botonAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/AYUDA.png"))); // NOI18N
         botonAyuda.setToolTipText("Ayuda");
+        botonAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAyudaActionPerformed(evt);
+            }
+        });
 
         botonSalir.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         botonSalir.setForeground(new java.awt.Color(0, 102, 102));
@@ -183,6 +190,17 @@ public class ClaveAcceso extends javax.swing.JFrame {
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         Login();
     }//GEN-LAST:event_botonAceptarActionPerformed
+
+    private void botonAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAyudaActionPerformed
+        // TODO add your handling code here:
+        try{
+      
+        Desktop.getDesktop().browse(new URI("file:///C:/Users/alexd/OneDrive/Documents/NetBeansProjects/InteliSoftPOS/Manual-De-Usuario.pdf"));
+        
+        } catch(Exception e){
+            System.out.print(e.getMessage());
+            } 
+    }//GEN-LAST:event_botonAyudaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptar;
