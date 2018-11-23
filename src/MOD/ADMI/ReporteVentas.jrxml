@@ -2,7 +2,20 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="560" pageHeight="842" columnWidth="520" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="72"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="FechaIni" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FechaFin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Clasi" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Clasi2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Titulo" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT PT.idasociacion,
        PT.preciosiniva,
@@ -16,7 +29,9 @@ FROM producto_ticket PT,
      producto P
      
 WHERE PT.producto_idproducto = P.idproducto
-AND PT.ticket_idticket = T.idticket]]>
+AND PT.ticket_idticket = T.idticket
+AND T.fecha_hora BETWEEN $P{FechaIni} AND $P{FechaFin}
+AND P.clasificacion IN ($P{Clasi},$P{Clasi2})]]>
 	</queryString>
 	<field name="idasociacion" class="java.lang.String"/>
 	<field name="preciosiniva" class="java.lang.Double"/>
@@ -33,6 +48,13 @@ AND PT.ticket_idticket = T.idticket]]>
 				<reportElement x="0" y="0" width="520" height="95"/>
 				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\Alfre\\Documents\\NetBeansProjects\\InteliSoftPOS\\Recursos\\EncabezadoBlancoNet.png"]]></imageExpression>
 			</image>
+			<textField>
+				<reportElement x="258" y="60" width="160" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Berlin Sans FB" size="18"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{Titulo}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>

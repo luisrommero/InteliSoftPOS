@@ -27,15 +27,150 @@ public class Reportes extends javax.swing.JFrame {
     
     BaseDeDatos bd = new BaseDeDatos();
     
+    String Fecha1, Fecha2, Clasi, Clasi2, Titulo;
     
+    //Reporte General
+    void validar1(){
+        if(jRadioResumen.isSelected()){
+            Clasificacion2.clearSelection();
+            jRadioDia.setEnabled(false);
+            jRadioMes.setEnabled(false);
+            jRadioSemana.setEnabled(false);
+            
+            txtDia2.setEnabled(false);
+            txtMes2.setEnabled(false);
+            txtAño2.setEnabled(false);
+            txtDia.setEnabled(false);
+            txtMes.setEnabled(false);
+            txtAño.setEnabled(false);
+            txtClasific.setEnabled(false);
+        }
+    }
+    
+    //ReportePerson
+    void validar2(){
+        if(jRadioPerson.isSelected()){
+            Clasificacion2.clearSelection();
+            jRadioDia.setEnabled(false);
+            jRadioMes.setEnabled(false);
+            jRadioSemana.setEnabled(false);
+            
+            txtDia2.setEnabled(true);
+            txtMes2.setEnabled(true);
+            txtAño2.setEnabled(true);
+            txtDia.setEnabled(true);
+            txtMes.setEnabled(true);
+            txtAño.setEnabled(true);
+            txtClasific.setEnabled(true);
+        }
+    }
+    
+    
+    //ReporteClasificacion
+    void validar3(){
+        if(jRadioVentas.isSelected()){
+            Clasificacion2.clearSelection();
+            jRadioDia.setEnabled(true);
+            jRadioMes.setEnabled(true);
+            jRadioSemana.setEnabled(true);
+            
+            txtDia2.setEnabled(false);
+            txtMes2.setEnabled(false);
+            txtAño2.setEnabled(false);
+            txtDia.setEnabled(false);
+            txtMes.setEnabled(false);
+            txtAño.setEnabled(false);
+            txtClasific.setEnabled(false);
+        }
+    }
+    
+    
+    void validarDia(){
+        if(jRadioDia.isSelected()){
+            txtDia2.setEnabled(false);
+            txtMes2.setEnabled(false);
+            txtAño2.setEnabled(false);
+            txtDia.setEnabled(true);
+            txtMes.setEnabled(true);
+            txtAño.setEnabled(true);
+            txtClasific.setEnabled(true);
+        }
+    }
+    
+    
+    void validarSemana(){
+        if(jRadioSemana.isSelected()){
+            txtDia2.setEnabled(true);
+            txtMes2.setEnabled(false);
+            txtAño2.setEnabled(false);
+            txtDia.setEnabled(true);
+            txtMes.setEnabled(true);
+            txtAño.setEnabled(true);
+            txtClasific.setEnabled(true);
+        }
+    }
+    
+    void validarMes(){
+        if(jRadioMes.isSelected()){
+            txtDia2.setEnabled(false);
+            txtMes2.setEnabled(false);
+            txtAño2.setEnabled(false);
+            txtDia.setEnabled(false);
+            txtMes.setEnabled(true);
+            txtAño.setEnabled(true);
+            txtClasific.setEnabled(true);
+        }
+    }
     
     void GenerarReporte(){
         
-        if(checkbox1.isValid()){
+        
+        if(jRadioResumen.isSelected()){
+            Fecha1 = "2018-01-01 00:00:00";
+            Fecha2 = "2019-12-01 23:59:59";
+            Clasi = "Ropa";
+            Clasi2 = "Accesorios";
+            Titulo = "General";
+            Clasificacion2.clearSelection();
             Reporte();
         }
+        if(jRadioDia.isSelected()){
+            ClasificacionRopa();
+            Fecha1 = txtAño.getSelectedItem() + "-" + txtMes.getSelectedItem() + "-" + txtDia.getSelectedItem() + " 00:00:00";
+            Fecha2 = txtAño.getSelectedItem() + "-" + txtMes.getSelectedItem() + "-" + txtDia.getSelectedItem() + " 23:59:59";
+            Titulo = "Por Dia";
+            Reporte();
+            //txtClave.setText(Fecha1);
+        }
+        if(jRadioSemana.isSelected()){
+            ClasificacionRopa();
+            Fecha1 = txtAño.getSelectedItem() + "-" + txtMes.getSelectedItem() + "-" + txtDia.getSelectedItem() + " 00:00:00";
+            Fecha2 = txtAño.getSelectedItem() + "-" + txtMes.getSelectedItem() + "-" + txtDia2.getSelectedItem() + " 23:59:59";
+            Titulo = "Por Semana";
+            Reporte();
+            //txtClave.setText(Fecha1);
+        }
+        if(jRadioMes.isSelected()){
+            ClasificacionRopa();
+            Fecha1 = txtAño.getSelectedItem() + "-" + txtMes.getSelectedItem() + "-" + "01" + " 00:00:00";
+            Fecha2 = txtAño.getSelectedItem() + "-" + txtMes.getSelectedItem() + "-" + "31" + " 23:59:59";
+            Titulo = "Por Mes";
+            Reporte();
+            //txtClave.setText(Fecha1);
+        }
+        if(jRadioPerson.isSelected()){
+            ClasificacionRopa();
+            Fecha1 = txtAño.getSelectedItem() + "-" + txtMes.getSelectedItem() + "-" + txtDia.getSelectedItem() + " 00:00:00";
+            Fecha2 = txtAño2.getSelectedItem() + "-" + txtMes2.getSelectedItem() + "-" + txtDia2.getSelectedItem() + " 23:59:59";
+            Titulo = "Personalizado";
+            Reporte();
+            //txtClave.setText(Fecha1);
+        }
+        
         
     }
+    
+    
     
     void Reporte(){
         bd.Conectar();
@@ -45,9 +180,14 @@ public class Reportes extends javax.swing.JFrame {
         //String tel = txtTelefono.getText();
         
          try {
-            URL  in = this.getClass().getResource("PorProducto.jasper");
+            URL  in = this.getClass().getResource("ReporteVentas.jasper");
             reporte = (JasperReport) JRLoader.loadObject(in);
             Map parametro = new HashMap();
+            parametro.put("FechaIni", Fecha1);
+            parametro.put("FechaFin", Fecha2);
+            parametro.put("Clasi", Clasi);
+            parametro.put("Clasi2", Clasi2);
+            parametro.put("Titulo", Titulo);
             
             //parametro.put("TELEFONO", tel);
             
@@ -67,11 +207,29 @@ public class Reportes extends javax.swing.JFrame {
     }
     
     
+    void ClasificacionRopa(){
+        if(txtClasific.getSelectedItem()== "Ropa"){
+            Clasi = "Ropa";
+            Clasi2 =  null;
+        }
+        if(txtClasific.getSelectedItem()== "Accesorios"){
+            Clasi = "Accesorios";
+            Clasi2 = null;
+        }
+        if(txtClasific.getSelectedItem()== "Todos"){
+            Clasi = "Ropa";
+            Clasi2 = "Accesorios";
+        }
+    }
+    
+    
 
 //    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Clasificacion1 = new javax.swing.ButtonGroup();
+        Clasificacion2 = new javax.swing.ButtonGroup();
         panelReportes = new javax.swing.JPanel();
         panelReportes2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -79,18 +237,33 @@ public class Reportes extends javax.swing.JFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtClave = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        checkbox1 = new java.awt.Checkbox();
-        checkbox2 = new java.awt.Checkbox();
-        checkbox3 = new java.awt.Checkbox();
-        checkbox4 = new java.awt.Checkbox();
+        txtClasific = new javax.swing.JComboBox<>();
+        txtDia = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        checkbox5 = new java.awt.Checkbox();
+        jRadioResumen = new javax.swing.JRadioButton();
+        jRadioVentas = new javax.swing.JRadioButton();
+        jRadioDia = new javax.swing.JRadioButton();
+        jRadioSemana = new javax.swing.JRadioButton();
+        jRadioMes = new javax.swing.JRadioButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jRadioPerson = new javax.swing.JRadioButton();
+        jLabel9 = new javax.swing.JLabel();
+        txtMes = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        txtAño = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        txtDia2 = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        txtMes2 = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
+        txtAño2 = new javax.swing.JComboBox<>();
         botonAceptar = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
         botonAyuda = new javax.swing.JButton();
@@ -129,7 +302,7 @@ public class Reportes extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jLabel2))
@@ -141,7 +314,7 @@ public class Reportes extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel5)))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +326,7 @@ public class Reportes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -165,79 +338,183 @@ public class Reportes extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204)));
         jPanel4.setPreferredSize(new java.awt.Dimension(415, 332));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 153, 204));
         jLabel6.setText("Reportes:");
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
 
-        checkbox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        checkbox1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        checkbox1.setLabel("Resumen de ventas");
+        txtClasific.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtClasific.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona...", "Accesorios", "Ropa", "Todos" }));
+        txtClasific.setEnabled(false);
+        jPanel4.add(txtClasific, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 120, -1));
 
-        checkbox2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        checkbox2.setLabel("Ventas por mes");
+        txtDia.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        txtDia.setEnabled(false);
+        jPanel4.add(txtDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 40, -1));
 
-        checkbox3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        checkbox3.setLabel("Ventas por producto");
+        jLabel7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel7.setText("Dia");
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 30, 20));
 
-        checkbox4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        checkbox4.setLabel("Corte Z (del dia)");
+        Clasificacion1.add(jRadioResumen);
+        jRadioResumen.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jRadioResumen.setText("Resumen de ventas");
+        jRadioResumen.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jRadioResumenStateChanged(evt);
+            }
+        });
+        jRadioResumen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioResumenActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 56, -1, -1));
 
-        jLabel7.setText("por clasificación");
+        Clasificacion1.add(jRadioVentas);
+        jRadioVentas.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jRadioVentas.setText("Ventas por:");
+        jRadioVentas.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jRadioVentasStateChanged(evt);
+            }
+        });
+        jRadioVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioVentasActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 99, 135, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "accesorio", "ropa ", "etc" }));
+        Clasificacion2.add(jRadioDia);
+        jRadioDia.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jRadioDia.setText("Dia");
+        jRadioDia.setEnabled(false);
+        jRadioDia.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jRadioDiaStateChanged(evt);
+            }
+        });
+        jRadioDia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioDiaActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 142, 114, -1));
 
-        checkbox5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        checkbox5.setLabel("Resumen por semana");
+        Clasificacion2.add(jRadioSemana);
+        jRadioSemana.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jRadioSemana.setText("Semana");
+        jRadioSemana.setEnabled(false);
+        jRadioSemana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioSemanaActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 185, 114, -1));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel6))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(checkbox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(checkbox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(checkbox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(checkbox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(141, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addGap(28, 28, 28)
-                .addComponent(checkbox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(checkbox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(checkbox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(checkbox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(128, Short.MAX_VALUE))
-        );
+        Clasificacion2.add(jRadioMes);
+        jRadioMes.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jRadioMes.setText("Mes");
+        jRadioMes.setEnabled(false);
+        jRadioMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioMesActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 228, 114, -1));
+
+        jLabel10.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Fecha Inicio");
+        jLabel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 270, -1));
+
+        jLabel11.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Fecha Cierre");
+        jLabel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 270, -1));
+
+        jLabel15.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Clasificacion");
+        jLabel15.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 270, 20));
+
+        Clasificacion1.add(jRadioPerson);
+        jRadioPerson.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jRadioPerson.setText("Personalizada");
+        jRadioPerson.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jRadioPersonStateChanged(evt);
+            }
+        });
+        jRadioPerson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioPersonActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioPerson, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 271, 153, -1));
+
+        jLabel9.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel9.setText("Mes");
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 30, 20));
+
+        txtMes.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        txtMes.setEnabled(false);
+        jPanel4.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 45, -1));
+
+        jLabel14.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel14.setText("Año");
+        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 30, 20));
+
+        txtAño.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtAño.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "2018", "2019", "2020", "2021", "2022" }));
+        txtAño.setEnabled(false);
+        jPanel4.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 55, -1));
+
+        jLabel8.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel8.setText("Dia");
+        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 30, 20));
+
+        txtDia2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtDia2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        txtDia2.setEnabled(false);
+        jPanel4.add(txtDia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 40, -1));
+
+        jLabel13.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel13.setText("Mes");
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 30, 20));
+
+        txtMes2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtMes2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        txtMes2.setEnabled(false);
+        jPanel4.add(txtMes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 45, -1));
+
+        jLabel18.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel18.setText("Año");
+        jPanel4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 30, 20));
+
+        txtAño2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtAño2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "2018", "2019", "2020", "2021", "2022" }));
+        txtAño2.setEnabled(false);
+        txtAño2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAño2ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(txtAño2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 55, -1));
 
         botonAceptar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         botonAceptar.setForeground(new java.awt.Color(0, 153, 51));
@@ -270,12 +547,12 @@ public class Reportes extends javax.swing.JFrame {
             panelReportes2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelReportes2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelReportes2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReportes2Layout.createSequentialGroup()
+                .addGroup(panelReportes2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelReportes2Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReportes2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelReportes2Layout.createSequentialGroup()
                         .addComponent(botonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,7 +566,7 @@ public class Reportes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelReportes2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(panelReportes2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonAceptar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -327,11 +604,11 @@ public class Reportes extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -349,30 +626,97 @@ public class Reportes extends javax.swing.JFrame {
         GenerarReporte();
     }//GEN-LAST:event_botonAceptarActionPerformed
 
+    private void jRadioPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioPersonActionPerformed
+        // TODO add your handling code here:
+        validar2();
+    }//GEN-LAST:event_jRadioPersonActionPerformed
+
+    private void jRadioResumenStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jRadioResumenStateChanged
+       
+    }//GEN-LAST:event_jRadioResumenStateChanged
+
+    private void jRadioPersonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jRadioPersonStateChanged
+      
+    }//GEN-LAST:event_jRadioPersonStateChanged
+
+    private void jRadioVentasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jRadioVentasStateChanged
+        
+    }//GEN-LAST:event_jRadioVentasStateChanged
+
+    private void txtAño2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAño2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAño2ActionPerformed
+
+    private void jRadioDiaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jRadioDiaStateChanged
+        
+    }//GEN-LAST:event_jRadioDiaStateChanged
+
+    private void jRadioResumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioResumenActionPerformed
+        //
+        validar1();
+    }//GEN-LAST:event_jRadioResumenActionPerformed
+
+    private void jRadioVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioVentasActionPerformed
+        // TODO add your handling code here:
+        validar3();
+    }//GEN-LAST:event_jRadioVentasActionPerformed
+
+    private void jRadioDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioDiaActionPerformed
+        //ValidarDia
+        validarDia();
+    }//GEN-LAST:event_jRadioDiaActionPerformed
+
+    private void jRadioSemanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioSemanaActionPerformed
+        // TODO add your handling code here:
+        validarSemana();
+    }//GEN-LAST:event_jRadioSemanaActionPerformed
+
+    private void jRadioMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioMesActionPerformed
+        // TODO add your handling code here:
+        validarMes();
+    }//GEN-LAST:event_jRadioMesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup Clasificacion1;
+    private javax.swing.ButtonGroup Clasificacion2;
     private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonAyuda;
     private javax.swing.JButton botonCancelar;
-    private java.awt.Checkbox checkbox1;
-    private java.awt.Checkbox checkbox2;
-    private java.awt.Checkbox checkbox3;
-    private java.awt.Checkbox checkbox4;
-    private java.awt.Checkbox checkbox5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JRadioButton jRadioDia;
+    private javax.swing.JRadioButton jRadioMes;
+    private javax.swing.JRadioButton jRadioPerson;
+    private javax.swing.JRadioButton jRadioResumen;
+    private javax.swing.JRadioButton jRadioSemana;
+    private javax.swing.JRadioButton jRadioVentas;
     private java.awt.Label label1;
     private javax.swing.JPanel panelReportes;
     private javax.swing.JPanel panelReportes2;
+    private javax.swing.JComboBox<String> txtAño;
+    private javax.swing.JComboBox<String> txtAño2;
+    private javax.swing.JComboBox<String> txtClasific;
+    private javax.swing.JTextField txtClave;
+    private javax.swing.JComboBox<String> txtDia;
+    private javax.swing.JComboBox<String> txtDia2;
+    private javax.swing.JComboBox<String> txtMes;
+    private javax.swing.JComboBox<String> txtMes2;
     // End of variables declaration//GEN-END:variables
 }
