@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="560" pageHeight="842" columnWidth="520" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+<<<<<<< HEAD:build/classes/MOD/ADMI/ReporteVentas.jrxml
 	<parameter name="FechaIni" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -16,6 +17,8 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="Titulo" class="java.lang.String"/>
+=======
+>>>>>>> ab1acba040c379f21351e7162d8eac8d9f431ff6:build/classes/MOD/ADMI/PorProducto.jrxml
 	<queryString>
 		<![CDATA[SELECT PT.idasociacion,
        PT.preciosiniva,
@@ -46,7 +49,7 @@ AND P.clasificacion IN ($P{Clasi},$P{Clasi2})]]>
 		<band height="95" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="520" height="95"/>
-				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\Alfre\\Documents\\NetBeansProjects\\InteliSoftPOS\\Recursos\\EncabezadoBlancoNet.png"]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\Manue\\Documents\\NetBeansProjects\\InteliSoftPOS\\Recursos\\EncabezadoBlancoNet.png"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="258" y="60" width="160" height="30"/>
@@ -176,7 +179,7 @@ AND P.clasificacion IN ($P{Clasi},$P{Clasi2})]]>
 		<band height="93" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="520" height="93"/>
-				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\Alfre\\Documents\\NetBeansProjects\\InteliSoftPOS\\Recursos\\Pie2.png"]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\Manue\\Documents\\NetBeansProjects\\InteliSoftPOS\\Recursos\\Pie2.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageFooter>

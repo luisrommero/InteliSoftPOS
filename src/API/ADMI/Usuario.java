@@ -13,7 +13,7 @@ public class Usuario {
     private String tipoUsuario;
     private String password;
     //--
-    private final static String TABLE_NAME = "usuario";
+    public static final String TABLE_NAME = "usuario";
     
     public Usuario()
     {

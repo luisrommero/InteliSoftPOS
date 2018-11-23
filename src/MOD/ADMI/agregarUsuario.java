@@ -1,6 +1,8 @@
 package MOD.ADMI;
 
 import API.ADMI.Usuario;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -10,6 +12,11 @@ public class agregarUsuario extends javax.swing.JFrame {
 
     public agregarUsuario() {
         initComponents();
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;		
+        setLocationRelativeTo(null);		
+        setVisible(true);
         mostrarTabla();
         txtId.setVisible(false);
     }
