@@ -5,20 +5,14 @@
  */
 package API.OPER;
 
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
 import API.SIST.*;
 
->>>>>>> ab1acba040c379f21351e7162d8eac8d9f431ff6
 /**
  *
  * @author luisromero
  */
 public class AsociacionProductoATicket {
-<<<<<<< HEAD
-    
-=======
     private String IdAsociacion;
     private Double PrecioSinIVA;
     private String Cantidad;
@@ -293,5 +287,4 @@ public Boolean InsertRegistro(AsociacionProductoATicket U)
     public void setIdTicket(String idTicket) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
->>>>>>> ab1acba040c379f21351e7162d8eac8d9f431ff6
 }
