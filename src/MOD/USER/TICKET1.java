@@ -362,8 +362,8 @@ public class TICKET1 extends javax.swing.JFrame {
 
     private void VentanaCreada_FormWIndowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_VentanaCreada_FormWIndowOpened
         this.Ticket = new Ticket().getNuevo();
-       // this.Ticket.InsertRegistro(this.Ticket);        
-        //this.txtIdTicket.setText(this.Ticket.getIdTicket());
+        this.Ticket.InsertRegistro(this.Ticket);        
+        this.txtIdTicket.setText(this.Ticket.getIdTicket());
         mostrarFechayHora();
     }//GEN-LAST:event_VentanaCreada_FormWIndowOpened
 
