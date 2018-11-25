@@ -5,14 +5,24 @@
  */
 package API.SIST;
 
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
 public class ConstantesDeBaseDeDatos {
-    
+       public static void main(String[]args) throws SQLException{
+
+       }
     private final String HOST_NAME = "127.0.0.1";
     public final static String DATABASE_NAME = "punto_venta";
     private final String PORT = "3306";
     private final String JDBC = "mysql";
+    //Usuario/Contraseña Paula NO TOCAR
     public final String USERNAME = "root";
     public final String PASSWORD = "";
+    //Usuario/Contraseña TODOS
+    //public final String USERNAME = "paula_root";
+    //public final String PASSWORD = "sjrRLhdbSiNCdyDf";
     //---Users-LOCALHOST
     //public final String USERNAME = "User_02"; //User 02
     //public final String PASSWORD = "Password_02"; //User 02

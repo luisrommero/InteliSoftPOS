@@ -7,6 +7,7 @@ package API.OPER;
 
 import java.util.ArrayList;
 import API.SIST.*;
+import javax.swing.JTextField;
 
 /**
  *
@@ -15,7 +16,7 @@ import API.SIST.*;
 public class AsociacionProductoATicket {
     private String IdAsociacion;
     private Double PrecioSinIVA;
-    private String Cantidad;
+    private Double Cantidad;
     private Double TotalDeCompra; 
     private String ProductoIdProducto;  
     private String TicketIdTicket;  
@@ -32,7 +33,7 @@ public Boolean InsertRegistro(AsociacionProductoATicket U)
         String Query = "INSERT INTO `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ AsociacionProductoATicket.TABLE_NAME +"` VALUES("
         + "'" + U.IdAsociacion + "',"
         + "" + U.PrecioSinIVA + ","
-        + "'" + U.Cantidad + "',"
+        + "" + U.Cantidad + ","
         + "" + U.TotalDeCompra + ","
         + "'" + U.ProductoIdProducto + "',"
         + "'" + U.TicketIdTicket + "')";
@@ -53,7 +54,7 @@ public Boolean InsertRegistro(AsociacionProductoATicket U)
             //--
             AsociacionProductoAAsociacionProductoATicket.IdAsociacion = ListaDeFilas.get(0).get(0);
             AsociacionProductoAAsociacionProductoATicket.PrecioSinIVA = Double.parseDouble(ListaDeFilas.get(0).get(1));
-            AsociacionProductoAAsociacionProductoATicket.Cantidad = ListaDeFilas.get(0).get(2);
+            AsociacionProductoAAsociacionProductoATicket.Cantidad = Double.parseDouble(ListaDeFilas.get(0).get(2));
             AsociacionProductoAAsociacionProductoATicket.TotalDeCompra = Double.parseDouble(ListaDeFilas.get(0).get(3));
             AsociacionProductoAAsociacionProductoATicket.ProductoIdProducto = ListaDeFilas.get(0).get(4);
             AsociacionProductoAAsociacionProductoATicket.TicketIdTicket = ListaDeFilas.get(0).get(5);
@@ -96,7 +97,7 @@ public Boolean InsertRegistro(AsociacionProductoATicket U)
     {
         this.IdAsociacion = "";
         this.PrecioSinIVA = 0.0;
-        this.Cantidad = "";
+        this.Cantidad = 0.0;
         this.TotalDeCompra = 0.0;
         this.ProductoIdProducto = ""; 
         this.TicketIdTicket = ""; 
@@ -144,7 +145,7 @@ public Boolean InsertRegistro(AsociacionProductoATicket U)
         Utilities utilities = new Utilities();
         while (true) {
             String UUID = utilities.GetRandomUUID();
-            String IdModulo = UUID.substring(10, UUID.length());
+            String IdModulo = UUID.substring(0, 9);
             if (this.IsIdUnique(IdModulo)) {
                 return (IdModulo);
             }
@@ -188,12 +189,12 @@ public Boolean InsertRegistro(AsociacionProductoATicket U)
         this.PrecioSinIVA = PrecioSinIVA;
     }
     
-    public String getCantidad()
+    public Double getCantidad()
     {
         return(this.Cantidad);
     }
     
-    public void setCantidad(String Cantidad)
+    public void setCantidad(Double Cantidad)
     {
         this.Cantidad = Cantidad;
     }
@@ -274,7 +275,7 @@ public Boolean InsertRegistro(AsociacionProductoATicket U)
     {
         this.IdAsociacion = "";
         this.PrecioSinIVA = 0.0;
-        this.Cantidad = "";
+        this.Cantidad = 0.0;
         this.TotalDeCompra = 0.0;
         this.ProductoIdProducto = "";
         this.TicketIdTicket = "";
@@ -285,6 +286,10 @@ public Boolean InsertRegistro(AsociacionProductoATicket U)
     }
 
     public void setIdTicket(String idTicket) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setCantidad(JTextField jTcantidad) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package API.ADMI;
 import java.util.ArrayList;
 import API.SIST.*;
@@ -50,6 +55,7 @@ public class Producto {
     {
         String Query = "SELECT * FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` WHERE `idproducto` = '" + Id + "';";
         ArrayList<ArrayList<String>> ListaDeFilas = new BaseDeDatos().EjecutarSentenciaSELECT(Query);
+        System.out.println(Query);
         try
         {
             Producto Producto = new Producto();
@@ -77,7 +83,7 @@ public class Producto {
     public ArrayList<Producto> GetAllProducto()
     {
         ArrayList<Producto> Lista = new ArrayList<Producto>();
-        String Query = "SELECT `idproducto` FROM `"+  ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` ";
+        String Query = "SELECT `idproducto` FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` ";
         ArrayList<ArrayList<String>> ListaDeFilas = new BaseDeDatos().EjecutarSentenciaSELECT(Query);
         //--
         if (!ListaDeFilas.isEmpty()) {
@@ -147,7 +153,7 @@ public class Producto {
         Utilities utilities = new Utilities();
         while (true) {
             String UUID = utilities.GetRandomUUID();
-            String IdModulo = UUID.substring(10, UUID.length());
+            String IdModulo = UUID.substring(0, 9);
             if (this.IsIdUnique(IdModulo)) {
                 return (IdModulo);
             }

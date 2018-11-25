@@ -33,7 +33,7 @@ public class Ticket {
     {
         String Query = "INSERT INTO `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Ticket.TABLE_NAME +"` VALUES("
         + "'" + U.IdTicket + "',"
-        + "CURRENT_TIMESTAMP,"
+        + "CURRENT_TIMESTAMP    ,"
         + "" + U.TotalSinIVA + ","
         + "" + U.IVA + ","
         + "'" + ((U.Factura) ? "1" : "0") + "',"
@@ -102,7 +102,7 @@ public class Ticket {
         this.IdUsuario = ""; 
         String Query = "UPDATE `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Ticket.TABLE_NAME +"` SET"
         //+ "`idticket` = '" + U.IdTicket + "', "
-        //+ "`fecha_hora` = '" + U.FechaYHoraDeCreacion + "', "
+        + "`fecha_hora` = CURRENT_TIMESTAMP, "
         + "`totalsiniva` = " + U.TotalSinIVA + ", "
         + "`iva` = " + U.IVA + ", "
         + "`factura` = '" + ((U.Factura.equals("1")) ? true : false) + "', "
@@ -143,7 +143,7 @@ public class Ticket {
         Utilities utilities = new Utilities();
         while (true) {
             String UUID = utilities.GetRandomUUID();
-            String IdModulo = UUID.substring(10, UUID.length());
+            String IdModulo = UUID.substring(0, 9);
             if (this.IsIdUnique(IdModulo)) {
                 return (IdModulo);
             }

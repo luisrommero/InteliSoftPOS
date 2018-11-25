@@ -362,20 +362,24 @@ public class TICKET1 extends javax.swing.JFrame {
 
     private void VentanaCreada_FormWIndowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_VentanaCreada_FormWIndowOpened
         this.Ticket = new Ticket().getNuevo();
-        this.Ticket.InsertRegistro(this.Ticket);        
-        this.txtIdTicket.setText(this.Ticket.getIdTicket());
+       // this.Ticket.InsertRegistro(this.Ticket);        
+        //this.txtIdTicket.setText(this.Ticket.getIdTicket());
         mostrarFechayHora();
     }//GEN-LAST:event_VentanaCreada_FormWIndowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Producto Producto = new Producto().GetRegistro(txtproducto.toString());
+        String prod = txtproducto.getText().toString();
+        Producto Producto = new Producto().GetRegistro(prod);
+        System.out.println(Producto);
         if(Producto != null)
         {
             AsociacionProductoATicket ProductoDeTicket = new AsociacionProductoATicket().getNuevo();
             ProductoDeTicket.setPrecioSinIVA(Producto.getPrecioSinIVA());
-            ProductoDeTicket.setCantidad(this.jTcantidad.getText());
+            String cantidad = jTcantidad.getText().toString();
+            Double cant = Double.parseDouble(cantidad);
+            ProductoDeTicket.setCantidad(cant);
             /////ProductoDeTicket.setTotalDeCompra(ProductoDeTicket.getCantidad() * (Double.parseDouble(ProductoDeTicket.getPrecioSinIVA())));
-            ProductoDeTicket.setIdProducto(Producto.getIdProducto());
+            ProductoDeTicket.setIdProducto(prod);
             ProductoDeTicket.setIdTicket(this.Ticket.getIdTicket());
             //--
             if(ProductoDeTicket.InsertRegistro(ProductoDeTicket))
@@ -403,41 +407,7 @@ public class TICKET1 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TICKET1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TICKET1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TICKET1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TICKET1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TICKET1().setVisible(true);
-            }
-        });
-    }
-
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncalculo;
     private javax.swing.JButton btneditar;
