@@ -1,9 +1,15 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package API.SIST;
 
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,7 +19,7 @@ public class BaseDeDatos {
     public Connection ConexionActual = null;
     private String lastMessage = "";
 
-    private boolean CargarDriverDeMySQL() {
+    boolean CargarDriverDeMySQL() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             return (true);
@@ -23,6 +29,7 @@ public class BaseDeDatos {
         }
     }
 
+   
     public boolean Conectar() {
         ConstantesDeBaseDeDatos ConstantesBD = new ConstantesDeBaseDeDatos();
         try {
@@ -198,5 +205,9 @@ public class BaseDeDatos {
         } else {
             return (0);
         }
+    }
+
+    public PreparedStatement prepareStatement(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

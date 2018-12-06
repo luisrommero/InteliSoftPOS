@@ -195,7 +195,7 @@ public class ClaveAcceso extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
       
-        Desktop.getDesktop().browse(new URI("file:///C:/Users/alexd/OneDrive/Documents/NetBeansProjects/InteliSoftPOS/Manual-De-Usuario.pdf"));
+        Desktop.getDesktop().browse(new URI("file:///C:/Users/Manue/Documents/NetBeansProjects/InteliSoftPOS/Manual-De-Usuario.pdf"));
         
         } catch(Exception e){
             System.out.print(e.getMessage());

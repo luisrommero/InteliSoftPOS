@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package API.ADMI;
 import java.util.ArrayList;
 import API.SIST.*;
@@ -14,7 +19,7 @@ public class Producto {
     private String Descripcion;
     private String Clasificacion; 
     private String Existencia; 
-    private String CodigoSat;
+    private Double CodigoSat;
     private Double PrecioSinIVA;
     private Double TasaCero;
     private Double Costo;
@@ -60,7 +65,7 @@ public class Producto {
             Producto.Descripcion = ListaDeFilas.get(0).get(3);
             Producto.Clasificacion = ListaDeFilas.get(0).get(4);
             Producto.Existencia = ListaDeFilas.get(0).get(5);
-            Producto.CodigoSat = ListaDeFilas.get(0).get(6);
+            Producto.CodigoSat = 0.0;//Double.parseDouble(ListaDeFilas.get(0).get(6));
             Producto.PrecioSinIVA = Double.parseDouble(ListaDeFilas.get(0).get(7));
             Producto.TasaCero = Double.parseDouble(ListaDeFilas.get(0).get(8));
             Producto.Costo = Double.parseDouble(ListaDeFilas.get(0).get(9));
@@ -77,7 +82,7 @@ public class Producto {
     public ArrayList<Producto> GetAllProducto()
     {
         ArrayList<Producto> Lista = new ArrayList<Producto>();
-        String Query = "SELECT `idproducto` FROM `"+  ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` ";
+        String Query = "SELECT `idproducto` FROM `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Producto.TABLE_NAME +"` ";
         ArrayList<ArrayList<String>> ListaDeFilas = new BaseDeDatos().EjecutarSentenciaSELECT(Query);
         //--
         if (!ListaDeFilas.isEmpty()) {
@@ -147,7 +152,7 @@ public class Producto {
         Utilities utilities = new Utilities();
         while (true) {
             String UUID = utilities.GetRandomUUID();
-            String IdModulo = UUID.substring(10, UUID.length());
+            String IdModulo = UUID.substring(0, 9);
             if (this.IsIdUnique(IdModulo)) {
                 return (IdModulo);
             }
@@ -231,12 +236,12 @@ public class Producto {
         this.Existencia = Existencia;
     }
      
-    public String getCodigoSat()
+    public Double getCodigoSat()
     {
         return(this.CodigoSat);
     }
     
-    public void setCodigoSat(String CodigoSat)
+    public void setCodigoSat(Double CodigoSat)
     {
         this.CodigoSat = CodigoSat;
     }
@@ -279,10 +284,14 @@ public class Producto {
         this.Descripcion = "";
         this.Clasificacion = "";
         this.Existencia = "";
-        this.CodigoSat = "";
+        this.CodigoSat = 0.0;
         this.PrecioSinIVA = 0.0;
         this.TasaCero = 0.0;
         this.Costo = 0.0; 
+    }
+
+    public void setCodigoSat(String codigoSat) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

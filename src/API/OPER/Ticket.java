@@ -56,7 +56,7 @@ public class Ticket {
             Ticket.FechaYHoraDeCreacion = ListaDeFilas.get(0).get(1);
             Ticket.TotalSinIVA = Double.parseDouble(ListaDeFilas.get(0).get(2));
             Ticket.IVA = Double.parseDouble(ListaDeFilas.get(0).get(3));
-            Ticket.Factura = ((ListaDeFilas.get(0).get(4).equals("1")) ? true : false);
+            Ticket.Factura = false;//((ListaDeFilas.get(0).get(4).equals("1")) ? true : false);
             Ticket.IdUsuario = ListaDeFilas.get(0).get(5);
             //--
             return (Ticket);
@@ -94,19 +94,13 @@ public class Ticket {
 
     public boolean Update_Registro(String Id, Ticket U)
     {
-        this.IdTicket = "";
-        this.FechaYHoraDeCreacion = "";
-        this.TotalSinIVA = 0.0;
-        this.IVA = 0.0;
-        this.Factura = false; //SIN USO
-        this.IdUsuario = ""; 
-        String Query = "UPDATE `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Ticket.TABLE_NAME +"` SET"
+        String Query = "UPDATE `"+ ConstantesDeBaseDeDatos.DATABASE_NAME +"`.`"+ Ticket.TABLE_NAME +"` SET "
         //+ "`idticket` = '" + U.IdTicket + "', "
-        //+ "`fecha_hora` = '" + U.FechaYHoraDeCreacion + "', "
-        + "`totalsiniva` = " + U.TotalSinIVA + ", "
-        + "`iva` = " + U.IVA + ", "
-        + "`factura` = '" + ((U.Factura.equals("1")) ? true : false) + "', "
-        + "`usuario_idusuario` = '" + U.IdUsuario + "' "
+        + "`fecha_hora` = CURRENT_TIMESTAMP, "
+        + "`totalsiniva` = " + U.getTotalSinIVA() + ", "
+        + "`iva` = " + U.getIVA() + " "
+        //+ "`factura` = '" + ((U.Factura.equals("1")) ? true : false) + "', "
+        //+ "`usuario_idusuario` = '" + U.IdUsuario + "' "
         + "WHERE `idticket` = '" + Id + "';";
         //--
         int AffectedRows = new BaseDeDatos().EjecutarSentenciaUPDATE(Query);
@@ -143,7 +137,7 @@ public class Ticket {
         Utilities utilities = new Utilities();
         while (true) {
             String UUID = utilities.GetRandomUUID();
-            String IdModulo = UUID.substring(10, UUID.length());
+            String IdModulo = UUID.substring(0, 9);
             if (this.IsIdUnique(IdModulo)) {
                 return (IdModulo);
             }
@@ -250,8 +244,9 @@ public class Ticket {
                 //--
                 if(Ticket != null)
                 {
-                    Ticket.setTotalSinIVA(TotalSinIVA);
+                    Ticket.setTotalSinIVA(SubTotalSinIVA);
                     Ticket.setIVA(TotalConIVA - SubTotalSinIVA);
+                    System.out.println("SUBTOTALES CALCULADOS ("+Ticket.getTotalSinIVA()+"|"+Ticket.getIVA()+")");
                     //--
                     if(Ticket.Update_Registro(IdTicket, Ticket))
                     {
@@ -261,7 +256,11 @@ public class Ticket {
                 }
                 else return(false);
             }
-            else return(false);
+            else
+            {
+                System.out.println("SUBTOTALES NO CALCULADOS");
+                return(false);
+            }
         }
         catch(Exception e)
         {

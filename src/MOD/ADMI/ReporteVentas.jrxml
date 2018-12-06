@@ -46,12 +46,12 @@ AND P.clasificacion IN ($P{Clasi},$P{Clasi2})]]>
 		<band height="95" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="520" height="95"/>
-				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\Alfre\\Documents\\NetBeansProjects\\InteliSoftPOS\\Recursos\\EncabezadoBlancoNet.png"]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\Manue\\Documents\\NetBeansProjects\\InteliSoftPOS\\Recursos\\EncabezadoBlancoNet.png"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="258" y="60" width="160" height="30"/>
+				<reportElement x="266" y="65" width="140" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Berlin Sans FB" size="18"/>
+					<font fontName="Berlin Sans FB" size="14"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{Titulo}]]></textFieldExpression>
 			</textField>
@@ -176,7 +176,7 @@ AND P.clasificacion IN ($P{Clasi},$P{Clasi2})]]>
 		<band height="93" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="520" height="93"/>
-				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\Alfre\\Documents\\NetBeansProjects\\InteliSoftPOS\\Recursos\\Pie2.png"]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\Manue\\Documents\\NetBeansProjects\\InteliSoftPOS\\Recursos\\Pie2.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageFooter>

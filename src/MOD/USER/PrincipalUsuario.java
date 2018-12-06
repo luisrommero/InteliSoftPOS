@@ -1,5 +1,6 @@
 package MOD.USER;
 
+import API.SIST.Utilities;
 import MOD.USER.ProductoUsuario;
 import MOD.USER.TICKET1;
 import java.awt.Dimension;
@@ -14,6 +15,8 @@ public class PrincipalUsuario extends javax.swing.JFrame {
         int width = pantalla.width;		
         setLocationRelativeTo(null);		
         setVisible(true);
+        Utilities utilities = new Utilities();
+        jtxtFecha.setText(utilities.GetFecha());
     }
 
 
@@ -25,7 +28,7 @@ public class PrincipalUsuario extends javax.swing.JFrame {
         labelMenuPrincipal = new javax.swing.JLabel();
         labelBienvenidoUsuario = new javax.swing.JLabel();
         labelFecha = new javax.swing.JLabel();
-        txtFecha = new javax.swing.JTextField();
+        jtxtFecha = new javax.swing.JTextField();
         botonProducto = new javax.swing.JButton();
         botonTicket = new javax.swing.JButton();
 
@@ -42,6 +45,9 @@ public class PrincipalUsuario extends javax.swing.JFrame {
 
         labelFecha.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelFecha.setText("FECHA:");
+
+        jtxtFecha.setBackground(new java.awt.Color(155, 155, 255));
+        jtxtFecha.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
         botonProducto.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MOD/ICONO/PRODUCTOS.png"))); // NOI18N
@@ -80,7 +86,7 @@ public class PrincipalUsuario extends javax.swing.JFrame {
                                 .addGap(111, 111, 111)
                                 .addComponent(labelFecha)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jtxtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(panelMenuPrincipalLayout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addComponent(labelMenuPrincipal)))
@@ -96,8 +102,8 @@ public class PrincipalUsuario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelFecha)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                    .addComponent(jtxtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(panelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonProducto)
                     .addComponent(botonTicket))
@@ -126,8 +132,8 @@ public class PrincipalUsuario extends javax.swing.JFrame {
 
     private void botonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTicketActionPerformed
         // TODO add your handling code here:
-        TICKET1 ti = new TICKET1();
-            ti.setVisible(true);
+        TICKET1 ti = new TICKET1("1");
+        ti.setVisible(true);
             dispose();
     }//GEN-LAST:event_botonTicketActionPerformed
 
@@ -135,10 +141,10 @@ public class PrincipalUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonProducto;
     private javax.swing.JButton botonTicket;
+    private javax.swing.JTextField jtxtFecha;
     private javax.swing.JLabel labelBienvenidoUsuario;
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelMenuPrincipal;
     private javax.swing.JPanel panelMenuPrincipal;
-    private javax.swing.JTextField txtFecha;
     // End of variables declaration//GEN-END:variables
 }

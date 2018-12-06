@@ -5,9 +5,10 @@
  */
 package API.SIST;
 
-import java.util.UUID;
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
 /**
  *
  * @author Luis Romero
@@ -22,5 +23,4 @@ public class Utilities {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
         return formato.format(fecha);
     }
-    
 }
